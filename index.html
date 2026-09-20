@@ -1,633 +1,2565 @@
 <!doctype html>
 <html lang="sv">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DevOps i techbranschen – Quiz</title>
-<style>
-:root{--bg:#f7f7fb;--card:#fff;--text:#17181c;--muted:#676b75;--border:#dedfe7;--accent:#6554d9;--soft:#efedff;--ok:#237a4b;--oksoft:#e9f7ef;--bad:#a43a3a;--badsoft:#fbecec}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,select{font:inherit}.app{max-width:920px;margin:auto;padding:28px 16px 60px}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}h1{font-size:32px;margin:6px 0 8px}.sub{color:var(--muted);line-height:1.55}.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}label span{display:block;font-size:13px;font-weight:700;margin-bottom:6px}select{width:100%;border:1px solid var(--border);border-radius:10px;padding:12px;background:white}.info{margin-top:14px;padding:14px;border-radius:12px;background:var(--soft);line-height:1.5;font-size:14px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:1px solid var(--border);background:white;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}.primary{background:var(--accent);border-color:var(--accent);color:white}.hidden{display:none!important}.toprow{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;flex-wrap:wrap}.progress{height:8px;background:#ececf2;border-radius:99px;overflow:hidden;margin:10px 0 16px}.bar{height:100%;background:var(--accent);width:0}.q{font-size:20px;line-height:1.45;margin:4px 0 16px}.options{display:grid;gap:10px}.opt{text-align:left;border:1px solid var(--border);border-radius:12px;background:white;padding:14px;cursor:pointer;line-height:1.4}.opt:hover{border-color:#b7b0e8}.opt:disabled{cursor:default}.opt.correct{border-color:var(--ok);background:var(--oksoft)}.opt.wrong{border-color:var(--bad);background:var(--badsoft)}.box{margin-top:14px;border:1px solid var(--border);border-radius:12px;padding:14px;line-height:1.5}.resultScore{font-size:34px;font-weight:800;margin-top:8px}.breakdown{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.item{border:1px solid var(--border);border-radius:12px;padding:13px}.review{display:grid;gap:10px}.small{font-size:13px;color:var(--muted)}@media(max-width:720px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:480px){.grid,.breakdown{grid-template-columns:1fr}h1{font-size:26px}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>DevOps i techbranschen – Quiz</title>
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #191922;
+      --muted: #6b6b7a;
+      --border: #dedee8;
+
+      --accent: #635bdb;
+      --accent-light: #eeedff;
+
+      --correct: #eaf8ee;
+      --correct-border: #79c28b;
+
+      --wrong: #fff0f0;
+      --wrong-border: #e49a9a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    main {
+      width: min(100% - 32px, 950px);
+      margin: 0 auto;
+      padding: 40px 0 70px;
+    }
+
+    h1 {
+      margin: 4px 0 10px;
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    h2,
+    h3 {
+      margin-top: 0;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+
+    label span {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    select,
+    button {
+      font: inherit;
+    }
+
+    select {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: white;
+      color: var(--text);
+    }
+
+    button {
+      min-height: 44px;
+      padding: 10px 16px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: white;
+      color: var(--text);
+
+      cursor: pointer;
+    }
+
+    button:hover:not(:disabled) {
+      border-color: var(--accent);
+    }
+
+    button:disabled {
+      cursor: default;
+    }
+
+    button.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+    }
+
+    .info {
+      padding: 15px;
+      margin-bottom: 18px;
+
+      border-radius: 12px;
+      background: var(--accent-light);
+
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      margin-top: 16px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+
+      flex-wrap: wrap;
+    }
+
+    .progress-container {
+      height: 8px;
+
+      margin: 12px 0 20px;
+
+      overflow: hidden;
+
+      border-radius: 999px;
+      background: #e6e6ee;
+    }
+
+    #progressBar {
+      height: 100%;
+      width: 0;
+
+      border-radius: 999px;
+      background: var(--accent);
+
+      transition: width 0.2s ease;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+
+      color: var(--muted);
+    }
+
+    .option {
+      width: 100%;
+
+      margin: 6px 0;
+      padding: 13px 15px;
+
+      text-align: left;
+
+      background: white;
+    }
+
+    .option.correct {
+      border-color: var(--correct-border);
+      background: var(--correct);
+    }
+
+    .option.wrong {
+      border-color: var(--wrong-border);
+      background: var(--wrong);
+    }
+
+    .hint,
+    .feedback {
+      margin-top: 14px;
+      padding: 15px;
+
+      border-radius: 12px;
+      background: #f1f1f6;
+
+      line-height: 1.6;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .review-item {
+      margin-top: 12px;
+      padding: 17px;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      background: white;
+    }
+
+    @media (max-width: 760px) {
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      main {
+        width: min(100% - 20px, 950px);
+        padding-top: 24px;
+      }
+
+      .controls,
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<main class="app">
-<section id="setup">
-  <div class="eyebrow">DevOps i techbranschen</div>
-  <h1>Quiz</h1>
-  <p class="sub">Frågorna är gjorda för att testa förståelse, inte bara igenkänning. Flera alternativ kan låta rimliga – välj det som bäst löser situationen utifrån kursmaterialet.</p>
-  <div class="card">
-    <div class="grid">
-      <label><span>Kursmål</span><select id="goal"><option value="all">Alla kursmål</option><option value="1">Kursmål 1</option><option value="2">Kursmål 2</option><option value="3">Kursmål 3</option><option value="4">Kursmål 4</option><option value="5">Kursmål 5</option><option value="6">Kursmål 6</option><option value="7">Kursmål 7</option><option value="8">Kursmål 8</option></select></label>
-      <label><span>Frågetyp</span><select id="depth"><option value="all">Blandat</option><option value="concept">Begrepp</option><option value="reason">Resonemang & tillämpning</option></select></label>
-      <label><span>Antal frågor</span><select id="count"><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option><option value="all">Alla tillgängliga</option></select></label>
-      <label><span>Läge</span><select id="mode"><option value="learn" selected>Lärläge</option><option value="exam">Provläge</option><option value="repeat">Repetitionsläge</option></select></label>
-    </div>
-    <div class="info"><strong>Lärläge:</strong> förklaring direkt. <strong>Provläge:</strong> facit visas först i resultatet. <strong>Repetitionsläge:</strong> prioriterar frågor du tidigare haft fel på.</div>
-    <div class="actions"><button class="btn primary" id="start">Starta quiz</button></div>
-  </div>
-</section>
+  <main>
 
-<section id="quiz" class="hidden">
-  <div class="toprow"><div><div id="meta" class="eyebrow"></div><div id="progressText" class="small"></div></div><strong id="score"></strong></div>
-  <div class="progress"><div id="bar" class="bar"></div></div>
-  <div class="card">
-    <div id="question" class="q"></div>
-    <div id="options" class="options"></div>
-    <div class="actions"><button class="btn" id="hintBtn">Visa ledtråd</button><button class="btn primary hidden" id="next">Nästa fråga</button></div>
-    <div id="hint" class="box hidden"></div>
-    <div id="feedback" class="box hidden"></div>
-  </div>
-</section>
+    <!-- START PAGE -->
 
-<section id="result" class="hidden">
-  <div class="card"><div class="eyebrow">Resultat</div><div id="finalScore" class="resultScore"></div><p id="resultMsg" class="sub"></p></div>
-  <div class="card" style="margin-top:14px"><h3>Per kursmål</h3><div id="breakdown" class="breakdown"></div></div>
-  <div class="card hidden" id="reviewWrap" style="margin-top:14px"><h3>Frågor att repetera</h3><div id="review" class="review"></div></div>
-  <div class="actions"><button class="btn hidden" id="retry">Träna på fel svar</button><button class="btn primary" id="restart">Ny omgång</button></div>
-</section>
-</main>
-<script>
-const qs = [
-  {
-    "g": 1,
-    "d": "reason",
-    "q": "Ett utvecklingsteam levererar ofta kod som fungerar i deras miljö, men Operations behöver göra flera justeringar innan den kan köras stabilt i produktion. Vilken förändring angriper grundproblemet bäst?",
-    "o": [
-      "Införa ett extra godkännandesteg där Operations granskar varje release innan deployment.",
-      "Standardisera miljöer och releasekrav tillsammans och automatisera större delar av leveransflödet.",
-      "Öka tiden mellan releaser så att Operations får mer tid att förbereda varje förändring.",
-      "Låta utvecklingsteamet skriva mer detaljerad dokumentation om varje release till Operations."
-    ],
-    "a": 1,
-    "h": "Flera alternativ kan minska risken kortsiktigt. Vilket minskar själva friktionen mellan miljöerna och teamen?",
-    "e": "Godkännanden, längre intervall och bättre dokumentation kan hjälpa, men de behåller samma överlämning. Gemensamma standarder och automation gör produktionskraven till en del av leveransflödet och minskar miljöskillnaderna."
-  },
-  {
-    "g": 1,
-    "d": "reason",
-    "q": "Test- och produktionsmiljöerna har börjat skilja sig åt, vilket gör att fel upptäcks först efter deployment. Vad är den mest direkt riktade förbättringen?",
-    "o": [
-      "Utöka integrationstesterna så att fler fel upptäcks innan release.",
-      "Införa en manuell checklista som jämför miljöerna före varje deployment.",
-      "Automatisera och standardisera hur miljöerna skapas och konfigureras.",
-      "Minska releasefrekvensen tills teamet har hunnit stabilisera processen."
-    ],
-    "a": 2,
-    "h": "Fråga dig vilket alternativ som tar bort orsaken till att miljöerna glider isär.",
-    "e": "Fler tester och checklistor kan upptäcka konsekvenserna av miljöskillnader, men standardiserad och automatiserad miljöhantering angriper själva orsaken: att miljöerna skapas och förändras på olika sätt."
-  },
-  {
-    "g": 1,
-    "d": "reason",
-    "q": "Efter att ett projekt gått live fungerar applikationen stabilt, men ingen underhåller längre CI/CD-pipelinen och den börjar gradvis gå sönder. Vilken organisatorisk slutsats är mest relevant?",
-    "o": [
-      "Pipelinen bör flyttas till Operations eftersom allt efter lansering är driftansvar.",
-      "Projektteamet bör behållas oförändrat så länge systemet finns i produktion.",
-      "Leveransflödet behöver fortsatt ägarskap i linjeorganisationen, även efter att projektfasen är slut.",
-      "Pipelinen kan ersättas med manuella releaser tills nästa större utvecklingsprojekt startar."
-    ],
-    "a": 2,
-    "h": "Fokusera på skillnaden mellan ett projekt som tar slut och ett system som fortsätter leva.",
-    "e": "DevOps-funktionen upphör inte vid lansering. Pipelines, miljöer, monitorering och automation behöver långsiktigt ägarskap i den löpande organisationen."
-  },
-  {
-    "g": 1,
-    "d": "reason",
-    "q": "En deployment rapporteras som lyckad, men kort därefter ökar svarstiderna och vissa användare får fel. Vad ger teamet bäst underlag för att förstå vad som händer i den körande miljön?",
-    "o": [
-      "En ny build av samma kod för att kontrollera att artefakten går att skapa igen.",
-      "Monitorering och loggar som visar systemets beteende efter deployment.",
-      "En extra kodgranskning av den senaste ändringen innan någon felsökning börjar.",
-      "En jämförelse av hur lång tid själva deployment-jobbet tog mot tidigare releaser."
-    ],
-    "a": 1,
-    "h": "Deployment har redan lyckats. Frågan gäller systemets faktiska beteende efteråt.",
-    "e": "Build- och deploymentdata säger inte nödvändigtvis hur tjänsten mår när den körs. Monitorering och loggar ger återkoppling om exempelvis fel och prestanda i produktion."
-  },
-  {
-    "g": 1,
-    "d": "concept",
-    "q": "Vilken beskrivning skiljer bäst DevOps från att bara ha ett separat driftteam?",
-    "o": [
-      "DevOps innebär att utvecklare tar över allt driftansvar så att Operations inte längre behövs.",
-      "DevOps fokuserar främst på vilka verktyg som används för deployment och monitorering.",
-      "DevOps kopplar samman utveckling och drift genom gemensamt ansvar, automation och återkoppling genom hela leveransflödet.",
-      "DevOps innebär att Operations får tidigare information om releaser men ansvarsfördelningen i övrigt förblir densamma."
-    ],
-    "a": 2,
-    "h": "DevOps handlar om mer än tidigare information eller ett specifikt verktyg.",
-    "e": "Kärnan är inte att ett team ersätter det andra. DevOps försöker skapa ett gemensamt flöde där ansvar, automation och feedback binder ihop utveckling och drift."
-  },
-  {
-    "g": 2,
-    "d": "reason",
-    "q": "En manuell releaseaktivitet görs två gånger per år och tar ungefär 20 minuter. Att automatisera den skulle ta flera veckor. Vilket resonemang är mest relevant?",
-    "o": [
-      "Automatisera ändå eftersom manuella steg i sig är ett tecken på en omogen DevOps-process.",
-      "Bedöm tidsbesparing, risk, kostnad och hur ofta processen används innan ni investerar i automationen.",
-      "Öka releasefrekvensen först så att automationen blir lättare att motivera.",
-      "Bygg automationen bara om samma teknik senare kan återanvändas i andra projekt."
-    ],
-    "a": 1,
-    "h": "Automation har inget egenvärde om investeringen är större än nyttan.",
-    "e": "DevOps ska stödja affärsvärde. En sällsynt, snabb och låg-risk manuell aktivitet kan vara mindre prioriterad än en ofta återkommande eller riskfylld process."
-  },
-  {
-    "g": 2,
-    "d": "reason",
-    "q": "En startup har en lång lista funktioner men vet ännu inte vilka kunderna faktiskt värderar. Vilket nästa steg minskar affärsrisken mest?",
-    "o": [
-      "Bygga en komplett första version så att kundfeedbacken baseras på hela produktidén.",
-      "Prioritera den tekniskt svåraste delen först för att eliminera arkitekturrisk.",
-      "Leverera en mindre användbar version och använda verklig feedback för nästa prioritering.",
-      "Färdigställa skalningslösningen innan de första kunderna släpps in."
-    ],
-    "a": 2,
-    "h": "Tänk på hur man testar ett antagande innan man investerar i hela lösningen.",
-    "e": "En MVP skapar möjlighet att testa om lösningen faktiskt ger värde. Det gör att teamet kan lära sig tidigt och ändra prioriteringar innan stora resurser investeras."
-  },
-  {
-    "g": 2,
-    "d": "reason",
-    "q": "Ett team har halverat tiden från kod till produktion, men antalet allvarliga incidenter efter release har ökat kraftigt. Vilken bedömning är mest rimlig?",
-    "o": [
-      "Förbättringen är ändå lyckad eftersom time-to-market är det viktigaste DevOps-måttet.",
-      "Teamet bör fortsätta öka releasefrekvensen eftersom mindre releaser automatiskt sänker incidentrisken.",
-      "Leveranshastigheten måste vägas mot kvalitet och stabilitet eftersom driftproblem också påverkar affärsvärdet.",
-      "Problemet bör främst lösas genom att lägga fler manuella godkännanden efter varje automatiserat test."
-    ],
-    "a": 2,
-    "h": "DevOps optimerar flera mål samtidigt, inte bara hastighet.",
-    "e": "Kortare ledtid är värdefullt först när systemet fortfarande kan levereras med tillräcklig kvalitet och stabilitet. Incidenter kan skapa kostnader, avbrott och missnöjda användare."
-  },
-  {
-    "g": 2,
-    "d": "concept",
-    "q": "Vilken tolkning av 'fail fast' passar bäst med materialets entreprenörskapsperspektiv?",
-    "o": [
-      "Att acceptera fler produktionsfel för att kunna leverera idéer snabbare.",
-      "Att snabbt avbryta en teknisk lösning så fort första försöket inte fungerar.",
-      "Att testa viktiga antaganden tidigt så att en dålig riktning upptäcks innan stora resurser investeras.",
-      "Att bygga enklare tekniska lösningar även när de inte uppfyller de viktigaste användarbehoven."
-    ],
-    "a": 2,
-    "h": "Begreppet handlar framför allt om hur snabbt man lär sig att ett antagande är fel.",
-    "e": "Fail fast betyder snabb återkoppling och tidigt lärande. Det innebär inte att kvalitet medvetet sänks eller att varje första motgång ska stoppa ett projekt."
-  },
-  {
-    "g": 2,
-    "d": "reason",
-    "q": "Två lösningar uppfyller dagens krav. Den ena är mer avancerad och skalbar men kräver ny kompetens och högre driftkostnad. Den andra är enklare och teamet kan redan den. Vad bör styra valet?",
-    "o": [
-      "Välj den mest skalbara eftersom framtida kapacitet alltid väger tyngre än dagens kostnad.",
-      "Välj den enklare eftersom ett team aldrig bör introducera teknik det inte redan kan.",
-      "Bedöm om den extra skalbarheten motiveras av verkliga behov och väg den mot kompetens, kostnad och underhåll.",
-      "Välj den lösning som ger kortast initial utvecklingstid, eftersom driftkostnad kan optimeras senare."
-    ],
-    "a": 2,
-    "h": "Det finns ingen stack som alltid är bäst; frågan är vilket behov som faktiskt finns.",
-    "e": "Teknikval är en avvägning. Extra skalbarhet kan vara rätt, men bara om nyttan motiverar mer komplexitet, högre kostnad och kompetensbehov."
-  },
-  {
-    "g": 3,
-    "d": "reason",
-    "q": "Ett formulär visas korrekt i webbläsaren, men när det skickas får användaren ett oväntat svar från API:t. Var är det mest rimligt att börja felsökningen?",
-    "o": [
-      "Frontend, eftersom felet blir synligt där och därför sannolikt skapades där.",
-      "Backend, eftersom API-svar alltid bestäms av servern.",
-      "Gränssnittet mellan frontend och backend: kontrollera både vad som skickas och vad som returneras.",
-      "Infrastrukturen, eftersom kommunikationen mellan frontend och backend går över nätverket."
-    ],
-    "a": 2,
-    "h": "Problemet uppstår i kontakten mellan två lager.",
-    "e": "Frontend kan skicka fel data eller tolka svaret fel, medan backend kan returnera fel status eller struktur. Därför bör man först undersöka kontraktet mellan lagren."
-  },
-  {
-    "g": 3,
-    "d": "reason",
-    "q": "Användarna kan genomföra alla funktioner i systemet, men många hittar inte rätt meny och missförstår flödet. Vilken kompetens är mest direkt relevant?",
-    "o": [
-      "QA, eftersom problemet bör fångas genom fler funktionella tester.",
-      "UX/UI, eftersom problemet gäller hur användaren förstår och interagerar med gränssnittet.",
-      "Produktägaren, eftersom problemet kan lösas genom att prioritera färre funktioner.",
-      "DevOps, eftersom användarproblemen uppstår i den driftsatta versionen."
-    ],
-    "a": 1,
-    "h": "Skilj på att systemet tekniskt fungerar och att det är lätt att använda.",
-    "e": "Systemet uppfyller funktionerna men användarupplevelsen är svag. UX/UI arbetar direkt med struktur, interaktion och begriplighet i gränssnittet."
-  },
-  {
-    "g": 3,
-    "d": "reason",
-    "q": "Ett team har fler önskade funktioner än de hinner bygga under nästa period. Vem har normalt starkast ansvar för att prioritera vad som ska utvecklas?",
-    "o": [
-      "Projektledaren, eftersom rollen samordnar tid och resurser.",
-      "Produktägaren, eftersom rollen prioriterar vad som ger värde och kopplar ihop intressenter med teamet.",
-      "QA/testaren, eftersom kvalitet avgör vilka funktioner som bör byggas först.",
-      "DevOps-ingenjören, eftersom leveranskapaciteten avgör hur mycket som ryms."
-    ],
-    "a": 1,
-    "h": "Flera roller påverkar planeringen, men en har normalt ansvar för produktprioriteringen.",
-    "e": "Projektledaren kan samordna projektet och andra roller bidrar med perspektiv, men produktägaren prioriterar normalt vad som ska utvecklas utifrån behov och värde."
-  },
-  {
-    "g": 3,
-    "d": "reason",
-    "q": "Alla funktionella tester passerar, men releaser misslyckas ofta eftersom miljöer och deploymentsteg är inkonsekventa. Vilken kompetens behöver teamet framför allt stärka?",
-    "o": [
-      "QA, för att lägga till fler funktionella testfall före release.",
-      "DevOps, för att standardisera miljöer och automatisera leveransflödet.",
-      "Backend, för att minska beroendet av infrastrukturen.",
-      "Produktägarskap, för att reducera antalet funktioner i varje release."
-    ],
-    "a": 1,
-    "h": "Funktionaliteten har redan testats. Problemet uppstår när systemet ska levereras.",
-    "e": "När testerna passerar men miljö- och deploymentprocessen är instabil ligger förbättringsbehovet nära DevOps: CI/CD, miljöstandardisering och automation."
-  },
-  {
-    "g": 3,
-    "d": "concept",
-    "q": "Varför är DevOps svårt att placera i endast ett lager i teknikstacken?",
-    "o": [
-      "För att DevOps främst är en organisationsroll och därför inte arbetar med tekniska lager.",
-      "För att DevOps kan beröra infrastruktur, CI/CD, deployment, monitorering och samspelet med applikationsutvecklingen.",
-      "För att DevOps ersätter behovet av specialister i frontend, backend och databas.",
-      "För att DevOps endast arbetar med de delar av stacken som körs efter deployment."
-    ],
-    "a": 1,
-    "h": "Tänk på hur många lager som påverkas av ett automatiserat leveransflöde.",
-    "e": "DevOps arbetar tvärs över flera delar av systemets livscykel. Rollen är ofta starkt kopplad till infrastruktur men också till build, test, deployment och monitorering."
-  },
-  {
-    "g": 4,
-    "d": "reason",
-    "q": "Ett team kan React och Node.js väl och ska snabbt bygga en ny webbapplikation. Vilket argument talar starkast för MERN?",
-    "o": [
-      "MongoDB gör att teamet slipper modellera data innan utvecklingen börjar.",
-      "Teamet kan använda mycket av sin befintliga JavaScript-kompetens genom flera lager i lösningen.",
-      "React och Node.js innebär att applikationen automatiskt blir enklare att skala än med andra stackar.",
-      "MERN minskar behovet av separat CI/CD eftersom alla centrala delar använder JavaScript."
-    ],
-    "a": 1,
-    "h": "Fokusera på varför stacken passar just teamets förutsättningar.",
-    "e": "Befintlig kompetens är ett viktigt teknikvalskriterium. MERN kan minska inlärningstid när teamet redan arbetar med React, Node.js och JavaScript."
-  },
-  {
-    "g": 4,
-    "d": "concept",
-    "q": "Vad är den viktigaste förändringen när en Linux-webbserverstack beskrivs som LNMP i stället för LAMP?",
-    "o": [
-      "MySQL/MariaDB ersätts av en dokumentdatabas.",
-      "Apache ersätts av Nginx som webbserver.",
-      "PHP/Perl/Python ersätts av Node.js som serverside-teknik.",
-      "Linux ersätts av en containerplattform."
-    ],
-    "a": 1,
-    "h": "Jämför den komponent i stacknamnet som ändras.",
-    "e": "I LNMP används Nginx i stället för Apache. Övriga delar kan fortfarande bestå av Linux, MySQL/MariaDB och en serverside-teknik."
-  },
-  {
-    "g": 4,
-    "d": "reason",
-    "q": "Ett Python-team ska bygga en relativt stor webbapplikation och vill ha mycket vanlig webbfunktionalitet och struktur färdig från början. Vad talar mest för Django framför Flask?",
-    "o": [
-      "Django erbjuder ett mer komplett ramverk med mer funktionalitet och struktur inbyggd.",
-      "Flask saknar stöd för att bygga API:er som används av en frontend.",
-      "Django kräver mindre förståelse för backend eftersom ramverket hanterar all affärslogik.",
-      "Flask lämpar sig främst för automation och bör inte användas för webbtjänster."
-    ],
-    "a": 0,
-    "h": "Skillnaden handlar om hur mycket ramverket ger teamet från början.",
-    "e": "Django är ett större och mer komplett ramverk, medan Flask är mer minimalistiskt. Det gör Django attraktivt när teamet vill ha mer struktur och färdig funktionalitet."
-  },
-  {
-    "g": 4,
-    "d": "reason",
-    "q": "Ett företag använder redan C#, SQL Server och Azure i flera system och har stor intern kompetens inom .NET. Vilket argument väger tyngst för .NET i ett nytt liknande system?",
-    "o": [
-      "Microsoft-teknik ger automatiskt bättre prestanda när den körs i Azure.",
-      "Befintlig kompetens och integrationer kan minska både leveranstid och operativ risk.",
-      ".NET gör att organisationen kan använda samma databas för alla framtida system.",
-      "C# minskar behovet av andra DevOps-verktyg eftersom mycket hanteras av plattformen."
-    ],
-    "a": 1,
-    "h": "Utgå från organisationens faktiska förutsättningar, inte från att en teknik är universellt bäst.",
-    "e": "En etablerad kompetens- och verktygsbas kan göra .NET till ett effektivt och mindre riskfyllt val. Det betyder inte att plattformen alltid är tekniskt överlägsen."
-  },
-  {
-    "g": 4,
-    "d": "reason",
-    "q": "Vilket är det starkaste argumentet mot att välja en teknikstack enbart för att den är populär?",
-    "o": [
-      "En populär stack förändras vanligtvis snabbare och blir därför svårare att underhålla.",
-      "Popularitet säger inte om stacken passar systemets krav, teamets kompetens eller den långsiktiga driften.",
-      "Populära stackar innebär oftare fler externa beroenden och därför högre säkerhetsrisk.",
-      "En organisation bör prioritera teknik som redan används internt även om den inte uppfyller nya krav."
-    ],
-    "a": 1,
-    "h": "Popularitet kan vara relevant, men den svarar inte på projektets viktigaste frågor.",
-    "e": "Teknikval måste kopplas till det specifika systemets behov, organisationens kunskap, säkerhet, skalning, utvecklingstakt och drift över tid."
-  },
-  {
-    "g": 5,
-    "d": "reason",
-    "q": "En startup med tre utvecklare bygger en första version av en relativt enkel tjänst. Vilket argument talar starkast för att börja monolitiskt?",
-    "o": [
-      "En monolit garanterar lägre driftkostnad även när systemet växer kraftigt.",
-      "En monolit minskar initial operativ komplexitet när behovet av oberoende tjänster ännu är begränsat.",
-      "En monolit gör att teamet senare kan byta till mikrotjänster utan arkitekturarbete.",
-      "En monolit är enklare eftersom hela applikationen alltid kan skalas mer effektivt än separata tjänster."
-    ],
-    "a": 1,
-    "h": "Tänk på vad ett litet team faktiskt behöver hantera i den första versionen.",
-    "e": "För ett mindre system kan en monolit vara enklare att utveckla, testa och deploya. Fördelen är framför allt lägre initial komplexitet, inte att monoliten alltid är bäst på sikt."
-  },
-  {
-    "g": 5,
-    "d": "reason",
-    "q": "I en stor e-handelsplattform har produktsökningen mycket högre belastning än resten av systemet. Vilken egenskap hos mikrotjänster är mest relevant?",
-    "o": [
-      "Söktjänsten kan skalas separat utan att samma extra kapacitet måste ges till hela applikationen.",
-      "Söktjänsten kan använda en egen releaseprocess och därför behöver övriga tjänster inte testas.",
-      "Söktjänsten kan byta teknik utan att några integrationer med andra tjänster påverkas.",
-      "Söktjänsten kan köras utan gemensam monitorering eftersom den är fristående."
-    ],
-    "a": 0,
-    "h": "Fokusera på skillnaden i belastning mellan en funktion och resten av systemet.",
-    "e": "Oberoende skalning är en viktig mikrotjänstfördel. Om bara sökningen behöver mer kapacitet kan den tjänsten skalas utan att hela systemet får samma resurser."
-  },
-  {
-    "g": 5,
-    "d": "reason",
-    "q": "Fyra team behöver göra förändringar och releaser oberoende av varandra i olika delar av ett stort system. Vilket argument talar tydligast för mikrotjänster?",
-    "o": [
-      "Varje team kan få en tydligare avgränsad tjänst som kan utvecklas och deployas mer självständigt.",
-      "Varje team kan välja helt egen teknik utan att behöva samordna gränssnitt mellan tjänster.",
-      "Varje team kan undvika gemensamma CI/CD-standarder eftersom tjänsterna deployas separat.",
-      "Varje team får automatiskt färre produktionsincidenter eftersom tjänsterna är mindre."
-    ],
-    "a": 0,
-    "h": "Oberoende betyder inte att all samordning försvinner.",
-    "e": "Mikrotjänster kan ge team större oberoende i utveckling och deployment. De behöver fortfarande samordna API:er, drift, monitorering och andra gemensamma principer."
-  },
-  {
-    "g": 5,
-    "d": "reason",
-    "q": "Ett företag delar upp en fungerande monolit i många mikrotjänster men behåller manuella builds, deployments och serverkonfigurationer. Vilket problem är mest sannolikt?",
-    "o": [
-      "Utvecklingsteamen får mindre frihet eftersom varje tjänst måste använda samma teknik.",
-      "Den operativa komplexiteten ökar snabbare än organisationens förmåga att hantera den.",
-      "Systemet blir svårare att skala eftersom mikrotjänster måste skalas tillsammans.",
-      "Testningen blir enklare men releaseprocessen blir långsammare."
-    ],
-    "a": 1,
-    "h": "Mikrotjänster ger fler separata saker att bygga, deploya och övervaka.",
-    "e": "Mikrotjänster ökar antalet deployments, miljöer, nätverkskopplingar och loggkällor. Utan stark automation och monitorering kan den extra flexibiliteten bli en stor operativ belastning."
-  },
-  {
-    "g": 5,
-    "d": "concept",
-    "q": "Vilken jämförelse mellan monolit och mikrotjänster är mest korrekt?",
-    "o": [
-      "Monolit är främst ett val för små system, medan mikrotjänster alltid är rätt när systemet ska användas i produktion.",
-      "Monolit kan ge enklare initial hantering, medan mikrotjänster kan ge mer oberoende och flexibel skalning men också högre operativ komplexitet.",
-      "Mikrotjänster ger bättre robusthet eftersom fel i en tjänst aldrig kan påverka andra tjänster.",
-      "Monolit och mikrotjänster skiljer sig främst i vilka programmeringsspråk som får användas."
-    ],
-    "a": 1,
-    "h": "Båda arkitekturerna har fördelar och nackdelar beroende på behov.",
-    "e": "Monoliter är ofta enklare initialt. Mikrotjänster kan ge oberoende utveckling och skalning men introducerar fler tjänster, nätverksberoenden, deployments och övervakningsbehov."
-  },
-  {
-    "g": 6,
-    "d": "reason",
-    "q": "Ett företag kräver att en compliance-ansvarig manuellt godkänner varje release innan den går till produktion. Vilken modell passar kravet bäst?",
-    "o": [
-      "Continuous Integration, där build och test automatiseras men releasepaketet inte behöver hållas redo.",
-      "Continuous Delivery, där förändringen automatiskt görs releaseklar men produktionssteget kan kräva godkännande.",
-      "Continuous Deployment, eftersom ett manuellt godkännande kan läggas efter att förändringen gått till produktion.",
-      "En helt manuell releaseprocess, eftersom ett manuellt beslut innebär att CD inte kan användas."
-    ],
-    "a": 1,
-    "h": "Det manuella beslutet behöver inte göra resten av leveransprocessen manuell.",
-    "e": "Continuous Delivery automatiserar vägen fram till en releaseklar version men kan behålla ett mänskligt beslut före produktion. Det passar därför ett krav på manuell approval."
-  },
-  {
-    "g": 6,
-    "d": "reason",
-    "q": "Tio utvecklare arbetar i flera veckor på separata grenar och slår ihop allt strax före release. Mergeproblem och integrationsfel blir stora. Vilken förändring adresserar orsaken bäst?",
-    "o": [
-      "Öka testningen efter att alla grenar slagits ihop.",
-      "Integrera mindre förändringar oftare och låta automatiserade builds och tester ge snabb feedback.",
-      "Införa ett längre kodfrysningsfönster före varje release.",
-      "Lägga till en separat stagingmiljö där den sammanslagna versionen kan testas längre."
-    ],
-    "a": 1,
-    "h": "Vilket alternativ gör själva integrationsproblemen mindre i stället för att bara upptäcka dem senare?",
-    "e": "Continuous Integration minskar storleken på varje integration och ger feedback tidigt. Mer testning efter en stor sammanslagning kan hitta problem men minskar inte orsaken till att de blir stora."
-  },
-  {
-    "g": 6,
-    "d": "reason",
-    "q": "En pipeline har passerat build och flera tester, men ett obligatoriskt integrationstest misslyckas. Vad är den mest rimliga standardreaktionen?",
-    "o": [
-      "Stoppa flödet och kräva att problemet hanteras innan förändringen går vidare.",
-      "Fortsätta till staging men blockera endast produktionssteget.",
-      "Köra om testet automatiskt tills det passerar för att utesluta tillfälliga fel.",
-      "Skapa artefakten som vanligt men låta Operations avgöra om felet är tillräckligt viktigt."
-    ],
-    "a": 0,
-    "h": "Pipelinen fungerar som en kvalitetsgrind när ett test är definierat som obligatoriskt.",
-    "e": "Om ett obligatoriskt test misslyckas bör förändringen normalt stoppas. Att fortsätta kan vara möjligt i vissa specialfall, men då har testet inte längre rollen som faktisk kvalitetsgrind."
-  },
-  {
-    "g": 6,
-    "d": "reason",
-    "q": "Efter en release visar monitoreringen att svarstiden ökat, trots att alla tester i pipelinen passerade. Vad illustrerar detta bäst?",
-    "o": [
-      "Att monitorering bör ersätta vissa automatiserade tester eftersom produktionsdata är mer realistisk.",
-      "Att CI/CD-flödet behöver återkoppling från produktion eftersom tester före deployment inte kan visa allt som händer i verklig drift.",
-      "Att problemet sannolikt ligger i buildsteget eftersom testerna annars hade hittat det.",
-      "Att Continuous Deployment är mindre lämpligt än Continuous Delivery när prestandaproblem förekommer."
-    ],
-    "a": 1,
-    "h": "Förhandskontroller och verklig drift svarar på olika frågor.",
-    "e": "Tester före deployment är viktiga men kan inte fånga alla produktionsförhållanden. Monitorering ger ny information som går tillbaka till nästa felsöknings- och utvecklingscykel."
-  },
-  {
-    "g": 6,
-    "d": "concept",
-    "q": "Vilken beskrivning skiljer korrekt mellan pipeline, jobb, trigger och artefakt?",
-    "o": [
-      "En pipeline är hela flödet, ett jobb är ett avgränsat steg, en trigger startar ett steg eller flöde och en artefakt är ett resultat som kan skickas vidare.",
-      "En pipeline är den färdiga builden, ett jobb är hela leveransflödet, en trigger är ett testresultat och en artefakt är en produktionsmiljö.",
-      "En pipeline är endast deploymentdelen, ett jobb är en utvecklarändring, en trigger är den färdiga builden och en artefakt är ett manuellt godkännande.",
-      "En pipeline och ett jobb betyder i praktiken samma sak, medan trigger och artefakt bara används vid Continuous Deployment."
-    ],
-    "a": 0,
-    "h": "Tänk kedja → steg → startvillkor → resultat.",
-    "e": "Pipelinen är helheten. Jobb är mindre steg i den. Triggers avgör när något startar, och artefakten är exempelvis resultatet från buildsteget som används senare i flödet."
-  },
-  {
-    "g": 7,
-    "d": "reason",
-    "q": "En Java-applikation behöver ett automatiserat flöde som hämtar data från ett API, bearbetar en konfigurationsfil och skickar ett resultat till en annan tjänst. Varför kan Python vara ett rimligt val?",
-    "o": [
-      "Python kan fungera som ett glue language mellan flera system även om själva applikationen är skriven i ett annat språk.",
-      "Python bör användas eftersom alla DevOps-flöden bör ha ett annat språk än applikationen.",
-      "Python gör att teamet kan undvika API-kontrakt mellan systemen.",
-      "Python kan ersätta behovet av de andra tjänsterna genom att köra deras logik lokalt."
-    ],
-    "a": 0,
-    "h": "Fokusera på integration, inte på vilket språk huvudapplikationen använder.",
-    "e": "Python kan användas runt en applikation för att koppla ihop API:er, filer och andra verktyg. DevOps-automation behöver inte använda samma språk som själva systemet."
-  },
-  {
-    "g": 7,
-    "d": "reason",
-    "q": "Ett agilt team vill snabbt prova ett internt verktyg, få feedback och förbättra det i flera små iterationer. Vilken Python-egenskap är mest relevant enligt materialet?",
-    "o": [
-      "Python är relativt lättläst och snabbt att arbeta med, vilket passar mindre lösningar som utvecklas stegvis.",
-      "Python ger automatiskt bättre prestanda än mer kompilerade språk vid varje iteration.",
-      "Python gör att teamet kan hoppa över designbeslut tills produkten är färdig.",
-      "Python passar agilt främst eftersom språket alltid används i CI/CD-verktyg."
-    ],
-    "a": 0,
-    "h": "Frågan gäller utvecklingstakt och iterativt arbete, inte rå prestanda.",
-    "e": "Materialet lyfter att Python är lättläst och snabbt att arbeta med, vilket passar prototyper, mindre funktioner, API:er och interna verktyg som förbättras stegvis."
-  },
-  {
-    "g": 7,
-    "d": "concept",
-    "q": "Vad menas främst med att Python kan fungera som ett 'glue language' i DevOps?",
-    "o": [
-      "Att Python kan koppla samman API:er, filer, databaser och andra verktyg i ett automatiserat flöde.",
-      "Att Python används för att skriva wrappers runt alla andra programmeringsspråk så att de får samma syntax.",
-      "Att Python bör vara det gemensamma applikationsspråket när flera team använder olika tekniker.",
-      "Att Python ersätter behovet av integrationsplattformar genom att all kommunikation sker i samma process."
-    ],
-    "a": 0,
-    "h": "Tänk 'lim' mellan redan existerande delar.",
-    "e": "Glue language betyder att Python kan koordinera och koppla ihop andra system och verktyg. Det kräver inte att resten av applikationen skrivs om i Python."
-  },
-  {
-    "g": 7,
-    "d": "reason",
-    "q": "En pipelinefil börjar innehålla mycket villkorslogik och flera steg som anropar externa tjänster. Vilket argument talar för att flytta delar av logiken till Python?",
-    "o": [
-      "Mer komplex logik kan bli tydligare och lättare att underhålla i ett riktigt script än i en växande pipelinekonfiguration.",
-      "Python gör att pipelinen inte längre behöver ha separata jobb eller triggers.",
-      "Python innebär att samma script automatiskt fungerar oberoende av alla externa API-förändringar.",
-      "Python gör att den komplexa logiken kan köras utan tester eftersom språket är lättläst."
-    ],
-    "a": 0,
-    "h": "Materialet säger att Python ofta används när uppgiften är mer avancerad än ett enkelt kommando.",
-    "e": "Python kan göra avancerad automationslogik mer strukturerad och återanvändbar. Pipelinen kan fortfarande styra när scriptet körs och hur resultatet påverkar nästa steg."
-  },
-  {
-    "g": 7,
-    "d": "reason",
-    "q": "Varför kan lättläst Python-kod vara särskilt värdefull i ett team som arbetar iterativt?",
-    "o": [
-      "Fler personer kan snabbare förstå, granska och förändra automationen när behoven ändras.",
-      "Lättläst kod behöver mindre testning eftersom fel blir synliga direkt vid läsning.",
-      "Det gör att samma person kan ansvara för både utveckling och drift utan överlämningar.",
-      "Det gör att teamet kan använda färre versioner av sina automationsverktyg."
-    ],
-    "a": 0,
-    "h": "Agilt arbete innebär att lösningar förändras ofta och av flera personer.",
-    "e": "När automation är lätt att läsa blir det enklare att samarbeta, granska och vidareutveckla den i korta iterationer. Läsbarhet ersätter däremot inte testning."
-  },
-  {
-    "g": 8,
-    "d": "reason",
-    "q": "En administratör loggar in på 50 servrar varje månad för att göra samma uppdatering. Vilken förändring ger störst nytta enligt systemautomationsprincipen?",
-    "o": [
-      "Automatisera den återkommande processen så att samma definierade åtgärd kan köras konsekvent på servrarna.",
-      "Skapa en detaljerad checklista så att den manuella processen genomförs på samma sätt varje gång.",
-      "Dela servrarna mellan flera administratörer så att uppdateringen blir klar snabbare.",
-      "Uppdatera ett mindre antal servrar åt gången för att minska konsekvensen av ett eventuellt fel."
-    ],
-    "a": 0,
-    "h": "Flera alternativ minskar risk eller tid, men vilket tar bort det repetitiva manuella arbetet?",
-    "e": "Checklista, parallellt arbete och stegvis utrullning kan vara värdefulla, men systemautomation adresserar själva repetitionen genom att samma process utförs konsekvent av automation."
-  },
-  {
-    "g": 8,
-    "d": "reason",
-    "q": "Efter varje deployment ska ett automatiserat steg kontrollera att en tjänst svarar korrekt. Om kontrollen misslyckas ska flödet markeras som felaktigt. Vilket användningsområde beskriver detta bäst?",
-    "o": [
-      "Systemautomation, eftersom kontrollen körs mot en server.",
-      "Automatiserad testning i ett DevOps-flöde, eftersom resultatet avgör om deploymenten anses lyckad.",
-      "Webbserverscriptning, eftersom kontrollen skickar en webbförfrågan.",
-      "Scriptprogrammering utan koppling till CI/CD, eftersom själva kontrollen är ett separat program."
-    ],
-    "a": 1,
-    "h": "Samma Python-script kan passa flera kategorier, men frågan gäller vilken funktion det har i flödet.",
-    "e": "Kontrollen är ett automatiserat test kopplat till deploymenten. Att den tekniskt använder en webbförfrågan gör den inte primärt till webbserverscriptning."
-  },
-  {
-    "g": 8,
-    "d": "reason",
-    "q": "Ett team vill kontrollera att hela flödet 'logga in → lägga produkt i kundvagn → genomföra köp' fungerar. Vilken testtyp ligger närmast?",
-    "o": [
-      "Ett API-test som testar varje backendendpoint separat.",
-      "Ett UI-/end-to-end-test som följer användarflödet genom flera delar av systemet.",
-      "Ett systemautomationsscript som kontrollerar serverkonfigurationen.",
-      "Ett post-deployment-test som endast verifierar att webbservern svarar."
-    ],
-    "a": 1,
-    "h": "Frågan gäller ett helt användarflöde, inte en enskild komponent.",
-    "e": "End-to-end-testning följer ett sammanhängande användarflöde genom flera systemdelar. API-tester kan vara viktiga men testar normalt mindre avgränsade gränssnitt."
-  },
-  {
-    "g": 8,
-    "d": "concept",
-    "q": "Vilket exempel beskriver bäst webbserverscriptning med Python?",
-    "o": [
-      "Ett script läser loggfiler och skickar en sammanfattning till ett övervakningssystem.",
-      "En Python-tjänst tar emot en webbförfrågan, hämtar data och skickar tillbaka ett svar.",
-      "Ett script uppdaterar konfigurationen på flera Linux-servrar.",
-      "Ett pipelinejobb kör Python för att kontrollera om en buildartefakt finns."
-    ],
-    "a": 1,
-    "h": "Fokusera på Python som del av själva backendtjänsten.",
-    "e": "Webbserverscriptning innebär att Python används för backend eller webbtjänster, exempelvis med Django eller Flask, där förfrågningar tas emot, behandlas och besvaras."
-  },
-  {
-    "g": 8,
-    "d": "reason",
-    "q": "Ett manuellt API-test körs inför varje release och ger ibland olika resultat beroende på vem som utför det. Vilken förbättring passar bäst med materialets syn på automatiserad testning?",
-    "o": [
-      "Automatisera samma kontroll så att den körs på ett reproducerbart sätt i leveransflödet.",
-      "Låta två personer göra testet oberoende och jämföra sina resultat.",
-      "Flytta testet till produktion så att det alltid körs mot den riktiga miljön.",
-      "Göra testet mer omfattande men behålla det manuellt för att kunna tolka fler situationer."
-    ],
-    "a": 0,
-    "h": "Materialet betonar både tidig feedback och reproducerbarhet.",
-    "e": "Automatisering gör att samma kontroll kan köras konsekvent och ge ett tydligt pass/fail-resultat i CI/CD-flödet. Manuella dubbelkontroller kan öka kvaliteten men behåller variationen."
-  }
-];
-const $=id=>document.getElementById(id);
-const setup=$('setup'),quiz=$('quiz'),result=$('result'),goal=$('goal'),depth=$('depth'),count=$('count'),modeEl=$('mode');
-const question=$('question'),options=$('options'),meta=$('meta'),progressText=$('progressText'),bar=$('bar'),scoreEl=$('score'),hintBtn=$('hintBtn'),hint=$('hint'),feedback=$('feedback'),next=$('next');
-const finalScore=$('finalScore'),resultMsg=$('resultMsg'),breakdown=$('breakdown'),reviewWrap=$('reviewWrap'),review=$('review'),retry=$('retry');
-let active=[],index=0,score=0,answers=[],locked=false,mode='learn';
-const statsKey='devopsQuizHardV4';
-function loadStats(){try{return JSON.parse(localStorage.getItem(statsKey)||'{}')}catch{return {}}}
-function saveStats(s){try{localStorage.setItem(statsKey,JSON.stringify(s))}catch{}}
-function key(q){return q.g+'|'+q.d+'|'+q.q}
-function record(q,correct){const s=loadStats(),k=key(q);s[k]??={seen:0,wrong:0};s[k].seen++;if(!correct)s[k].wrong++;saveStats(s)}
-function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
-function prep(q){return {...q,opts:shuffle(q.o.map((label,i)=>({label,correct:i===q.a})))}}
-function pool(){return qs.filter(q=>(goal.value==='all'||String(q.g)===goal.value)&&(depth.value==='all'||q.d===depth.value))}
-function repeatPool(p){const s=loadStats();const missed=p.filter(q=>(s[key(q)]?.wrong||0)>0);if(!missed.length)return shuffle(p);missed.sort((a,b)=>{const A=s[key(a)],B=s[key(b)];return B.wrong/Math.max(1,B.seen)-A.wrong/Math.max(1,A.seen)||B.wrong-A.wrong});return [...missed,...shuffle(p.filter(q=>(s[key(q)]?.wrong||0)===0))]}
-function begin(custom){mode=modeEl.value;let p=custom||pool();if(!custom&&mode==='repeat')p=repeatPool(p);const n=count.value==='all'?p.length:Math.min(Number(count.value),p.length);active=(mode==='repeat'&&!custom?p.slice(0,n):shuffle(p).slice(0,n)).map(prep);index=0;score=0;answers=[];setup.classList.add('hidden');result.classList.add('hidden');quiz.classList.remove('hidden');render()}
-function render(){locked=false;const q=active[index];question.textContent=q.q;meta.textContent=`Kursmål ${q.g} · ${q.d==='concept'?'Begrepp':'Resonemang & tillämpning'}`;progressText.textContent=`Fråga ${index+1} av ${active.length}`;bar.style.width=`${(index+1)/active.length*100}%`;scoreEl.textContent=mode==='exam'?'Provläge':mode==='repeat'?`Repetition · Rätt: ${score}`:`Rätt: ${score}`;options.innerHTML='';hint.classList.add('hidden');feedback.classList.add('hidden');next.classList.add('hidden');hintBtn.classList.remove('hidden');hintBtn.textContent='Visa ledtråd';q.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';b.textContent=o.label;b.addEventListener('click',()=>choose(i,b));options.appendChild(b)})}
-function choose(i,b){if(locked)return;locked=true;const q=active[index],picked=q.opts[i];if(picked.correct)score++;record(q,picked.correct);answers.push({q,picked:picked.label,correct:picked.correct});[...options.children].forEach((el,k)=>{el.disabled=true;if(mode!=='exam'){if(q.opts[k].correct)el.classList.add('correct');if(k===i&&!q.opts[k].correct)el.classList.add('wrong')}});hintBtn.classList.add('hidden');if(mode!=='exam'){feedback.classList.remove('hidden');feedback.innerHTML=`<strong>${picked.correct?'Rätt!':'Inte riktigt.'}</strong><br>${q.e}`;scoreEl.textContent=mode==='repeat'?`Repetition · Rätt: ${score}`:`Rätt: ${score}`}next.classList.remove('hidden');next.textContent=index===active.length-1?'Visa resultat':'Nästa fråga'}
-function finish(){quiz.classList.add('hidden');result.classList.remove('hidden');const pct=Math.round(score/active.length*100);finalScore.textContent=`${score} / ${active.length} (${pct}%)`;resultMsg.textContent=pct>=85?'Starkt resultat. Du verkar kunna skilja mellan flera rimliga alternativ och välja det som bäst passar situationen.':pct>=65?'Bra grund. Gå igenom frågorna du missade och fokusera på varför ett alternativ var bättre än de andra.':'Repetera sambanden i kursmaterialet. Målet är att kunna motivera varför ett alternativ passar bäst, inte bara känna igen rätt ord.';const s={};answers.forEach(a=>{s[a.q.g]??={r:0,t:0};s[a.q.g].t++;if(a.correct)s[a.q.g].r++});breakdown.innerHTML='';Object.keys(s).sort((a,b)=>a-b).forEach(g=>{const el=document.createElement('div');el.className='item';el.innerHTML=`<strong>Kursmål ${g}</strong><div class="small">${s[g].r} av ${s[g].t} rätt</div>`;breakdown.appendChild(el)});const wrong=answers.filter(a=>!a.correct);review.innerHTML='';reviewWrap.classList.toggle('hidden',!wrong.length);retry.classList.toggle('hidden',!wrong.length);wrong.forEach(a=>{const correct=a.q.opts.find(o=>o.correct).label,el=document.createElement('div');el.className='item';el.innerHTML=`<div class="eyebrow">Kursmål ${a.q.g}</div><strong>${a.q.q}</strong><p><b>Ditt svar:</b> ${a.picked}</p><p><b>Bästa svar:</b> ${correct}</p><p class="sub">${a.q.e}</p>`;review.appendChild(el)})}
-$('start').addEventListener('click',()=>begin());hintBtn.addEventListener('click',()=>{hint.textContent=active[index].h;hint.classList.toggle('hidden');hintBtn.textContent=hint.classList.contains('hidden')?'Visa ledtråd':'Dölj ledtråd'});next.addEventListener('click',()=>{if(!locked)return;if(index<active.length-1){index++;render()}else finish()});$('restart').addEventListener('click',()=>{result.classList.add('hidden');quiz.classList.add('hidden');setup.classList.remove('hidden')});retry.addEventListener('click',()=>{const w=answers.filter(a=>!a.correct).map(a=>a.q);if(w.length)begin(w)})
-</script>
+    <section id="setup">
+      <p class="muted">DevOps i techbranschen</p>
+
+      <h1>Quiz – Kursmål 1–8</h1>
+
+      <p class="muted">
+        Frågorna bygger på kursanteckningarna.
+        Du kan träna både på begrepp och på frågor där du behöver
+        använda samma teori i en situation.
+      </p>
+
+      <div class="controls">
+
+        <label>
+          <span>Kursmål</span>
+
+          <select id="goal">
+            <option value="all">Alla kursmål</option>
+            <option value="1">Kursmål 1</option>
+            <option value="2">Kursmål 2</option>
+            <option value="3">Kursmål 3</option>
+            <option value="4">Kursmål 4</option>
+            <option value="5">Kursmål 5</option>
+            <option value="6">Kursmål 6</option>
+            <option value="7">Kursmål 7</option>
+            <option value="8">Kursmål 8</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Frågetyp</span>
+
+          <select id="questionType">
+            <option value="all">Blandat</option>
+            <option value="concept">Begrepp</option>
+            <option value="reason">Resonemang & tillämpning</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Antal frågor</span>
+
+          <select id="questionCount">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+            <option value="all">Alla tillgängliga</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Läge</span>
+
+          <select id="mode">
+            <option value="learn">Lärläge</option>
+            <option value="exam">Provläge</option>
+            <option value="repeat">Repetitionsläge</option>
+          </select>
+        </label>
+
+      </div>
+
+      <div class="info">
+        <strong>Lärläge:</strong>
+        du får veta direkt om svaret är rätt och får en förklaring.
+
+        <br /><br />
+
+        <strong>Provläge:</strong>
+        du svarar på frågorna utan att få facit förrän i slutet.
+
+        <br /><br />
+
+        <strong>Repetitionsläge:</strong>
+        frågor som du tidigare svarat fel på prioriteras.
+      </div>
+
+      <div class="actions">
+        <button id="startButton" class="primary">
+          Starta quiz
+        </button>
+
+        <button id="resetStatistics">
+          Nollställ repetitionsstatistik
+        </button>
+      </div>
+    </section>
+
+
+    <!-- QUIZ -->
+
+    <section id="quiz" class="hidden">
+
+      <div class="top">
+
+        <div>
+          <div id="questionMeta" class="tag"></div>
+          <div id="progressText" class="muted"></div>
+        </div>
+
+        <strong id="scoreText"></strong>
+
+      </div>
+
+      <div class="progress-container">
+        <div id="progressBar"></div>
+      </div>
+
+      <div class="card">
+
+        <h2 id="questionText"></h2>
+
+        <div id="options"></div>
+
+        <div class="actions">
+
+          <button id="hintButton">
+            Visa ledtråd
+          </button>
+
+          <button
+            id="nextButton"
+            class="primary hidden"
+          >
+            Nästa fråga
+          </button>
+
+        </div>
+
+        <div
+          id="hint"
+          class="hint hidden"
+        ></div>
+
+        <div
+          id="feedback"
+          class="feedback hidden"
+        ></div>
+
+      </div>
+    </section>
+
+
+    <!-- RESULT -->
+
+    <section id="result" class="hidden">
+
+      <div class="card">
+
+        <h2>Resultat</h2>
+
+        <div
+          id="finalScore"
+          style="font-size: 2rem; font-weight: 800"
+        ></div>
+
+        <p
+          id="resultMessage"
+          class="muted"
+        ></p>
+
+      </div>
+
+      <h3 style="margin-top: 24px">
+        Resultat per kursmål
+      </h3>
+
+      <div
+        id="goalResults"
+        class="results-grid"
+      ></div>
+
+
+      <div id="reviewSection" class="hidden">
+
+        <h3 style="margin-top: 24px">
+          Frågor att repetera
+        </h3>
+
+        <div id="review"></div>
+
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          id="retryWrong"
+          class="hidden"
+        >
+          Träna på fel svar
+        </button>
+
+        <button
+          id="restartButton"
+          class="primary"
+        >
+          Ny omgång
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /*
+      g = kursmål
+      d = question type
+          concept = begrepp
+          reason  = resonemang/tillämpning
+
+      q = fråga
+      o = svarsalternativ
+      a = index på rätt svar
+      h = ledtråd
+      e = förklaring
+    */
+
+    const questions = [
+
+      /*
+        ==================================================
+        KURSMÅL 1
+        ==================================================
+      */
+
+      {
+        g: 1,
+        d: "concept",
+
+        q: "Vad betyder DevOps?",
+
+        o: [
+          "Development + Operations",
+          "Design + Optimization",
+          "Deployment + Organization",
+          "Development + Outsourcing"
+        ],
+
+        a: 0,
+
+        h: "Tänk på vilka två delar som DevOps försöker koppla ihop.",
+
+        e:
+          "DevOps betyder Development + Operations. Grundidén är att utveckling och drift ska samarbeta genom hela systemets livscykel."
+      },
+
+      {
+        g: 1,
+        d: "concept",
+
+        q:
+          "Varför kan Development och Operations ha olika mål i en traditionell organisation?",
+
+        o: [
+          "Utveckling vill ofta leverera förändringar snabbt medan drift prioriterar stabilitet",
+          "Development arbetar bara med nätverk",
+          "Operations får inte arbeta med produktion",
+          "De använder alltid olika programmeringsspråk"
+        ],
+
+        a: 0,
+
+        h:
+          "Jämför behovet av förändring med behovet av stabil produktion.",
+
+        e:
+          "Utveckling vill ofta leverera nya funktioner och förändringar snabbt. Drift ansvarar för att produktionen är stabil och vill därför minska risken för störningar."
+      },
+
+      {
+        g: 1,
+        d: "reason",
+
+        q:
+          "En utvecklare gör en liten ändring. Vilket arbetssätt ligger närmast DevOps?",
+
+        o: [
+          "Ändringen byggs och testas automatiskt och går sedan vidare mot deployment genom en tydlig process",
+          "Ändringen skickas manuellt mellan flera personer",
+          "Ändringen testas först när användarna hittar problem",
+          "Ändringen sparas bara på utvecklarens dator"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på automation och färre manuella överlämningar.",
+
+        e:
+          "I anteckningarna används just detta som exempel på DevOps: en liten ändring kan byggas och testas automatiskt och sedan gå vidare mot deployment enligt en tydlig process."
+      },
+
+      {
+        g: 1,
+        d: "reason",
+
+        q:
+          "Ett system har lanserats och körs nu i produktion. Är DevOps-arbetet klart?",
+
+        o: [
+          "Nej, pipelines, miljöer och monitorering behöver fortsätta underhållas och förbättras",
+          "Ja, DevOps behövs bara innan första releasen",
+          "Ja, efter lansering arbetar bara utvecklarna",
+          "Nej, men DevOps övergår bara till UX-design"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på DevOps i en linjeorganisation.",
+
+        e:
+          "När systemet är i drift fortsätter DevOps-arbetet. Pipelines, miljöer, monitorering, stabilitet, säkerhet och kostnader behöver fortsätta hanteras."
+      },
+
+
+      /*
+        ==================================================
+        KURSMÅL 2
+        ==================================================
+      */
+
+      {
+        g: 2,
+        d: "concept",
+
+        q:
+          "Vad är ett viktigt mål med DevOps ur ett affärsperspektiv?",
+
+        o: [
+          "Att hjälpa verksamheten leverera värde snabbare, säkrare och mer effektivt",
+          "Att alltid använda de mest avancerade verktygen",
+          "Att göra systemen så tekniskt komplexa som möjligt",
+          "Att eliminera alla förändringar i produktion"
+        ],
+
+        a: 0,
+
+        h:
+          "Tekniken är ett medel för verksamheten.",
+
+        e:
+          "DevOps har inte bara ett tekniskt syfte. Målet är att tekniken ska hjälpa verksamheten att leverera värde snabbare, säkrare och mer effektivt."
+      },
+
+      {
+        g: 2,
+        d: "concept",
+
+        q:
+          "Vad betyder kortare time-to-market?",
+
+        o: [
+          "Kortare tid från idé eller kodändring till att användaren får förändringen",
+          "Kortare svarstid i databasen",
+          "Kortare sprintar",
+          "Mindre kod i applikationen"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på vägen från idé till användare.",
+
+        e:
+          "Time-to-market handlar om tiden från en idé eller kodändring tills användaren faktiskt kan ta del av förändringen."
+      },
+
+      {
+        g: 2,
+        d: "concept",
+
+        q:
+          "Vad är en MVP?",
+
+        o: [
+          "En första användbar version som riktiga användare kan testa",
+          "En helt färdig produkt med alla funktioner",
+          "En typ av produktionsserver",
+          "Ett monitoreringssystem"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på att testa en idé innan allt är färdigbyggt.",
+
+        e:
+          "En MVP är en första användbar version som kan testas av riktiga användare innan hela produkten är färdigbyggd."
+      },
+
+      {
+        g: 2,
+        d: "reason",
+
+        q:
+          "En liten ändring tar flera dagar att testa och driftsätta manuellt. Vad skulle DevOps kunna förbättra?",
+
+        o: [
+          "Automatisera delar av testning och deployment så mindre förändringar kan göras oftare",
+          "Göra releaser ännu större",
+          "Ta bort monitoreringen",
+          "Vänta längre mellan varje release"
+        ],
+
+        a: 0,
+
+        h:
+          "Fundera på tid, risk och återkoppling.",
+
+        e:
+          "Om processen automatiseras kan mindre förändringar göras oftare, med mindre risk per förändring och snabbare återkoppling."
+      },
+
+
+      /*
+        ==================================================
+        KURSMÅL 3
+        ==================================================
+      */
+
+      {
+        g: 3,
+        d: "concept",
+
+        q:
+          "Vad är en teknikstack?",
+
+        o: [
+          "En samling tekniker som tillsammans bygger upp och driver ett IT-system",
+          "En lista över företagets utvecklare",
+          "En typ av programmeringsspråk",
+          "Endast teknikerna som används i Front-End"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på flera tekniska lager som arbetar tillsammans.",
+
+        e:
+          "En teknikstack är den samling tekniker som tillsammans bygger upp och driver ett IT-system."
+      },
+
+      {
+        g: 3,
+        d: "concept",
+
+        q:
+          "Vad arbetar en DevOps-ingenjör ofta särskilt med?",
+
+        o: [
+          "Infrastruktur, automation, CI/CD, deployment och monitorering",
+          "Endast UX-design",
+          "Endast Front-End",
+          "Endast projektplanering"
+        ],
+
+        a: 0,
+
+        h:
+          "DevOps arbetar tvärs över stacken.",
+
+        e:
+          "DevOps-ingenjören arbetar tvärs över stacken men ofta särskilt med infrastruktur, automation, CI/CD, deployment och monitorering."
+      },
+
+      {
+        g: 3,
+        d: "reason",
+
+        q:
+          "En användare klickar på 'Logga in'. Vilken beskrivning stämmer bäst?",
+
+        o: [
+          "Front-End hanterar interaktionen, Back-End kontrollerar uppgifterna och databasen kan användas för informationen",
+          "Allt sker endast i Front-End",
+          "Allt sker endast i infrastrukturen",
+          "Produktägaren kontrollerar lösenordet"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på exemplet om inloggning i anteckningarna.",
+
+        e:
+          "Inloggningen börjar i Front-End, medan kontrollen sker i Back-End. Information kan hämtas från en databas och hela tjänsten körs på infrastruktur."
+      },
+
+      {
+        g: 3,
+        d: "concept",
+
+        q:
+          "Vad gör en produktägare?",
+
+        o: [
+          "Prioriterar vad som ska utvecklas och fungerar som länk mellan intressenter och utvecklingsteam",
+          "Installerar operativsystem",
+          "Ansvarar för all nätverkstrafik",
+          "Bygger alla CI/CD-pipelines"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på prioritering och verksamhetens behov.",
+
+        e:
+          "Produktägaren prioriterar vad som ska utvecklas och fungerar som länk mellan intressenter och utvecklingsteam."
+      },
+
+
+      /*
+        ==================================================
+        KURSMÅL 4
+        ==================================================
+      */
+
+      {
+        g: 4,
+        d: "concept",
+
+        q:
+          "Vad är den största skillnaden mellan MEAN, MERN och MEVN?",
+
+        o: [
+          "Vilken frontendteknik som används",
+          "Vilket operativsystem som används",
+          "Vilken databas som används",
+          "Om systemet använder Back-End"
+        ],
+
+        a: 0,
+
+        h:
+          "Angular, React och Vue är viktiga här.",
+
+        e:
+          "MEAN använder Angular, MERN använder React och MEVN använder Vue. MongoDB, Express och Node.js är gemensamma."
+      },
+
+      {
+        g: 4,
+        d: "concept",
+
+        q:
+          "Vilka delar ingår i LAMP?",
+
+        o: [
+          "Linux, Apache, MySQL och PHP/Perl/Python",
+          "Linux, Angular, MongoDB och Python",
+          "Linux, Apache, MongoDB och React",
+          "Laravel, Apache, Microsoft SQL Server och Python"
+        ],
+
+        a: 0,
+
+        h:
+          "Namnet LAMP kommer från komponenterna.",
+
+        e:
+          "LAMP är en klassisk webbserverstack med Linux, Apache, MySQL och ett serverspråk som PHP, Perl eller Python."
+      },
+
+      {
+        g: 4,
+        d: "concept",
+
+        q:
+          "Vad är skillnaden mellan Django och Flask enligt anteckningarna?",
+
+        o: [
+          "Django är större med många funktioner inbyggda medan Flask är lättare och mer minimalistiskt",
+          "Django är en databas och Flask ett operativsystem",
+          "Django används endast till Front-End",
+          "Flask kan inte användas för webbtjänster"
+        ],
+
+        a: 0,
+
+        h:
+          "Skillnaden handlar om hur mycket som redan finns inbyggt.",
+
+        e:
+          "Django är ett större ramverk med många funktioner inbyggda. Flask är lättare och mer minimalistiskt."
+      },
+
+      {
+        g: 4,
+        d: "reason",
+
+        q:
+          "Varför innehåller en DevOps-orienterad stack mer än bara Front-End, Back-End och databas?",
+
+        o: [
+          "Eftersom man också behöver hantera hur systemet byggs, körs, automatiseras och övervakas",
+          "För att Front-End inte används i moderna system",
+          "För att databaser inte längre behövs",
+          "För att varje applikation måste använda samma verktyg"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på infrastruktur, pipelines och monitorering.",
+
+        e:
+          "En modern lösning behöver ofta även infrastruktur, automation, pipelines, monitorering och loggning utöver själva applikationslagren."
+      },
+
+
+      /*
+        ==================================================
+        KURSMÅL 5
+        ==================================================
+      */
+
+      {
+        g: 5,
+        d: "concept",
+
+        q:
+          "Vad kännetecknar en monolitisk arkitektur?",
+
+        o: [
+          "Stora delar av systemets funktionalitet finns i samma applikation och kodbas",
+          "Varje funktion är alltid en separat tjänst",
+          "Systemet saknar Back-End",
+          "Varje funktion använder alltid olika programmeringsspråk"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på ett system där allt huvudsakligen sitter ihop.",
+
+        e:
+          "I en monolit ligger stora delar av systemets funktionalitet i samma applikation och kodbas och systemet driftsätts som en enhet."
+      },
+
+      {
+        g: 5,
+        d: "concept",
+
+        q:
+          "Vad kännetecknar mikrotjänster?",
+
+        o: [
+          "Systemet delas upp i mindre självständiga tjänster med tydliga ansvarsområden",
+          "All funktionalitet finns i samma applikation",
+          "Systemet kan inte använda API:er",
+          "Alla tjänster måste använda exakt samma teknik"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på exempelvis användare, produkter och betalningar som separata tjänster.",
+
+        e:
+          "I en mikrotjänstarkitektur delas systemet upp i mindre självständiga tjänster där varje tjänst ansvarar för en tydlig funktion."
+      },
+
+      {
+        g: 5,
+        d: "reason",
+
+        q:
+          "I en stor webbshop får produktsökningen mycket mer trafik än resten av systemet. Vilken fördel med mikrotjänster blir relevant?",
+
+        o: [
+          "Söktjänsten kan skalas separat",
+          "Hela systemet måste skalas lika mycket",
+          "Alla tjänster måste slås ihop",
+          "Monitorering kan tas bort"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på flexibel skalning.",
+
+        e:
+          "Med mikrotjänster kan just den tjänst som behöver mer kapacitet skalas separat i stället för att hela systemet skalas."
+      },
+
+      {
+        g: 5,
+        d: "reason",
+
+        q:
+          "Varför blir DevOps särskilt viktigt när ett system använder många mikrotjänster?",
+
+        o: [
+          "För att många tjänster innebär fler builds, tester, deployments, loggar och miljöer att hantera",
+          "För att mikrotjänster inte behöver testas",
+          "För att mikrotjänster inte kan övervakas",
+          "För att DevOps bara fungerar med mikrotjänster"
+        ],
+
+        a: 0,
+
+        h:
+          "Fler tjänster innebär också mer att administrera.",
+
+        e:
+          "Mikrotjänster ökar komplexiteten. Därför blir automation, tydliga CI/CD-flöden och bra monitorering viktiga."
+      },
+
+
+      /*
+        ==================================================
+        KURSMÅL 6
+        ==================================================
+      */
+
+      {
+        g: 6,
+        d: "concept",
+
+        q:
+          "Vad kännetecknar agil systemutveckling enligt anteckningarna?",
+
+        o: [
+          "Man arbetar i korta iterationer där mindre delar utvecklas, testas och förbättras ofta",
+          "Man väntar tills hela systemet är färdigt innan man testar",
+          "Man gör endast en release per år",
+          "Man undviker förändringar efter projektstart"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på sprintar och snabb återkoppling.",
+
+        e:
+          "Agil systemutveckling arbetar i korta iterationer eller sprintar där mindre delar av produkten utvecklas, testas och förbättras ofta."
+      },
+
+      {
+        g: 6,
+        d: "concept",
+
+        q:
+          "Vad innebär Continuous Integration?",
+
+        o: [
+          "Utvecklare integrerar sina förändringar ofta och de kan byggas och testas automatiskt",
+          "Alla förändringar går automatiskt direkt till produktion",
+          "Utvecklare väntar flera veckor innan deras kod kombineras",
+          "CI används bara för monitorering"
+        ],
+
+        a: 0,
+
+        h:
+          "Fokusera på integration och tidig feedback.",
+
+        e:
+          "Continuous Integration innebär att utvecklare integrerar förändringar ofta i en gemensam kodbas så att de kan byggas och testas automatiskt."
+      },
+
+      {
+        g: 6,
+        d: "concept",
+
+        q:
+          "Vad är skillnaden mellan Continuous Delivery och Continuous Deployment?",
+
+        o: [
+          "Delivery gör förändringen redo för release medan Deployment även kan automatisera produktionssättningen",
+          "Delivery gäller endast Front-End",
+          "Deployment har inga tester",
+          "Det finns ingen skillnad"
+        ],
+
+        a: 0,
+
+        h:
+          "Skillnaden ligger främst i det sista steget.",
+
+        e:
+          "Continuous Delivery gör systemet releaseklart men produktionssläppet kan kräva ett mänskligt beslut. Continuous Deployment kan automatisera hela vägen till produktion."
+      },
+
+      {
+        g: 6,
+        d: "concept",
+
+        q:
+          "Vad är en trigger i en CI/CD-pipeline?",
+
+        o: [
+          "En händelse eller ett villkor som startar ett jobb",
+          "Hela pipelinekedjan",
+          "Resultatet från buildsteget",
+          "En produktionsserver"
+        ],
+
+        a: 0,
+
+        h:
+          "En push kan exempelvis vara en sådan.",
+
+        e:
+          "En trigger är en händelse eller ett villkor som startar ett jobb, exempelvis en push eller att ett tidigare steg har lyckats."
+      },
+
+      {
+        g: 6,
+        d: "concept",
+
+        q:
+          "Vad är en artefakt i en CI/CD-pipeline?",
+
+        o: [
+          "Resultatet från ett buildsteg som kan skickas vidare",
+          "Ett felmeddelande från användaren",
+          "En trigger",
+          "En projektplan"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på vad buildsteget producerar.",
+
+        e:
+          "En artefakt är resultatet från ett buildsteg som kan skickas vidare till nästa steg i pipelinen."
+      },
+
+      {
+        g: 6,
+        d: "reason",
+
+        q:
+          "Ett agilt team utvecklar nya förändringar snabbt, men build, test och deployment görs manuellt. Vad händer sannolikt?",
+
+        o: [
+          "De manuella stegen blir en flaskhals",
+          "CI/CD blir mindre relevant",
+          "Automatiserade tester behövs inte",
+          "Utvecklingen blir automatiskt stabilare"
+        ],
+
+        a: 0,
+
+        h:
+          "Jämför utvecklingstakten med leveranstakten.",
+
+        e:
+          "Om utvecklingen går snabbt medan build, test och deployment fortfarande är manuella blir dessa steg en flaskhals. CI/CD hjälper leveransen att följa den agila utvecklingens tempo."
+      },
+
+
+      /*
+        ==================================================
+        KURSMÅL 7
+        ==================================================
+      */
+
+      {
+        g: 7,
+        d: "concept",
+
+        q:
+          "Varför är Python vanligt inom DevOps enligt anteckningarna?",
+
+        o: [
+          "Det är relativt lättläst, snabbt att arbeta med och har många färdiga bibliotek",
+          "Det kan endast användas för Front-End",
+          "Det fungerar endast på Windows",
+          "Det kan inte användas tillsammans med API:er"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på läsbarhet, snabb utveckling och bibliotek.",
+
+        e:
+          "Python är vanligt inom DevOps eftersom det är relativt lättläst, snabbt att arbeta med och har många färdiga bibliotek."
+      },
+
+      {
+        g: 7,
+        d: "concept",
+
+        q:
+          "Vad betyder att Python kan fungera som ett 'glue language'?",
+
+        o: [
+          "Python kan koppla ihop olika system, tjänster och verktyg",
+          "Python används endast för databaser",
+          "Python ersätter nätverk",
+          "Python används bara för AI"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på Python som ett 'lim' mellan olika delar.",
+
+        e:
+          "Python kan fungera som ett lim mellan andra system och användas för att styra eller koppla ihop olika tjänster och verktyg."
+      },
+
+      {
+        g: 7,
+        d: "reason",
+
+        q:
+          "Ett automatiserat flöde ska hämta information från en tjänst, kontrollera den och skicka resultatet vidare. Hur kan Python användas?",
+
+        o: [
+          "Python kan knyta ihop stegen och styra flödet",
+          "Python används som fysisk server",
+          "Python ersätter nätverket",
+          "Python kan endast visa användargränssnittet"
+        ],
+
+        a: 0,
+
+        h:
+          "Det här liknar exemplet på Python som glue language.",
+
+        e:
+          "Python kan användas för att hämta information, kontrollera resultat och sedan skicka status vidare till ett annat system."
+      },
+
+      {
+        g: 7,
+        d: "reason",
+
+        q:
+          "Applikationen är skriven i Java. Kan teamet ändå använda Python inom DevOps?",
+
+        o: [
+          "Ja, Python kan användas för automation och integration runt applikationen",
+          "Nej, alla verktyg måste använda Java",
+          "Nej, Python fungerar bara med Python-applikationer",
+          "Ja, men endast om systemet saknar databas"
+        ],
+
+        a: 0,
+
+        h:
+          "Automationsspråket behöver inte vara samma som applikationsspråket.",
+
+        e:
+          "Python kan användas för automation och integration även om själva applikationen är skriven i exempelvis Java, C# eller JavaScript."
+      },
+
+
+      /*
+        ==================================================
+        KURSMÅL 8
+        ==================================================
+      */
+
+      {
+        g: 8,
+        d: "concept",
+
+        q:
+          "Vad betyder scriptprogrammering?",
+
+        o: [
+          "Att skriva mindre program som automatiserar en bestämd uppgift",
+          "Att bygga ett helt operativsystem",
+          "Att skapa användargränssnitt",
+          "Att skriva projektplaner"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på en återkommande uppgift som annars görs manuellt.",
+
+        e:
+          "Scriptprogrammering betyder att man skriver mindre program som automatiserar en bestämd uppgift."
+      },
+
+      {
+        g: 8,
+        d: "reason",
+
+        q:
+          "Samma uppdatering behöver installeras på många servrar. Varför är systemautomation användbar?",
+
+        o: [
+          "Processen kan göras snabbare och mer konsekvent än om varje server hanteras manuellt",
+          "Det garanterar att inget någonsin kan gå fel",
+          "Det gör att servrar inte längre behövs",
+          "Det ersätter all monitorering"
+        ],
+
+        a: 0,
+
+        h:
+          "Jämför samma manuella uppgift på många maskiner med automation.",
+
+        e:
+          "Systemautomation minskar behovet av att upprepa samma administration manuellt på många maskiner och hjälper till att göra arbetet konsekvent."
+      },
+
+      {
+        g: 8,
+        d: "concept",
+
+        q:
+          "Vad är syftet med automatiserad testning i ett CI/CD-flöde?",
+
+        o: [
+          "Att ge ett tydligt resultat som kan avgöra om förändringen får gå vidare",
+          "Att ersätta monitorering",
+          "Att garantera att systemet aldrig får buggar",
+          "Att göra deployment mer manuell"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på tester som en kvalitetskontroll i flödet.",
+
+        e:
+          "Automatiserade tester kan avgöra om en förändring får gå vidare mot release eller deployment och hjälper till att upptäcka fel tidigt."
+      },
+
+      {
+        g: 8,
+        d: "concept",
+
+        q:
+          "Hur kan Python användas för webbserverscriptning?",
+
+        o: [
+          "Ta emot en förfrågan, bearbeta information och skicka tillbaka ett svar",
+          "Endast ändra färger på en webbsida",
+          "Ersätta alla databaser",
+          "Endast läsa loggfiler"
+        ],
+
+        a: 0,
+
+        h:
+          "Tänk på Python som backend med exempelvis Django eller Flask.",
+
+        e:
+          "Med Django eller Flask kan Python användas i backend för att ta emot en förfrågan, bearbeta information och skicka tillbaka ett svar."
+      }
+
+    ];
+
+
+    /*
+      ==================================================
+      APP STATE
+      ==================================================
+    */
+
+    const setup =
+      document.getElementById("setup");
+
+    const quiz =
+      document.getElementById("quiz");
+
+    const result =
+      document.getElementById("result");
+
+
+    const goalSelect =
+      document.getElementById("goal");
+
+    const typeSelect =
+      document.getElementById("questionType");
+
+    const countSelect =
+      document.getElementById("questionCount");
+
+    const modeSelect =
+      document.getElementById("mode");
+
+
+    const startButton =
+      document.getElementById("startButton");
+
+    const resetStatistics =
+      document.getElementById("resetStatistics");
+
+
+    const questionMeta =
+      document.getElementById("questionMeta");
+
+    const progressText =
+      document.getElementById("progressText");
+
+    const scoreText =
+      document.getElementById("scoreText");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const questionText =
+      document.getElementById("questionText");
+
+    const optionsElement =
+      document.getElementById("options");
+
+    const hintButton =
+      document.getElementById("hintButton");
+
+    const hintElement =
+      document.getElementById("hint");
+
+    const feedback =
+      document.getElementById("feedback");
+
+    const nextButton =
+      document.getElementById("nextButton");
+
+
+    const finalScore =
+      document.getElementById("finalScore");
+
+    const resultMessage =
+      document.getElementById("resultMessage");
+
+    const goalResults =
+      document.getElementById("goalResults");
+
+    const reviewSection =
+      document.getElementById("reviewSection");
+
+    const review =
+      document.getElementById("review");
+
+    const retryWrong =
+      document.getElementById("retryWrong");
+
+    const restartButton =
+      document.getElementById("restartButton");
+
+
+    let activeQuestions = [];
+
+    let currentQuestion = 0;
+
+    let score = 0;
+
+    let answers = [];
+
+    let answerLocked = false;
+
+    let currentMode = "learn";
+
+
+    const statisticsKey =
+      "devops-course-quiz-statistics";
+
+
+    /*
+      ==================================================
+      STATISTICS
+      ==================================================
+    */
+
+    function getStatistics() {
+
+      try {
+
+        return JSON.parse(
+          localStorage.getItem(statisticsKey) || "{}"
+        );
+
+      } catch {
+
+        return {};
+
+      }
+
+    }
+
+
+    function saveStatistics(statistics) {
+
+      localStorage.setItem(
+        statisticsKey,
+        JSON.stringify(statistics)
+      );
+
+    }
+
+
+    function questionKey(question) {
+
+      return `${question.g}|${question.q}`;
+
+    }
+
+
+    function recordAnswer(question, correct) {
+
+      const statistics =
+        getStatistics();
+
+      const key =
+        questionKey(question);
+
+
+      if (!statistics[key]) {
+
+        statistics[key] = {
+          attempts: 0,
+          wrong: 0
+        };
+
+      }
+
+
+      statistics[key].attempts++;
+
+
+      if (!correct) {
+
+        statistics[key].wrong++;
+
+      }
+
+
+      saveStatistics(statistics);
+
+    }
+
+
+    /*
+      ==================================================
+      HELPERS
+      ==================================================
+    */
+
+    function shuffle(array) {
+
+      const result =
+        [...array];
+
+
+      for (
+        let i = result.length - 1;
+        i > 0;
+        i--
+      ) {
+
+        const j =
+          Math.floor(
+            Math.random() * (i + 1)
+          );
+
+
+        [
+          result[i],
+          result[j]
+        ] = [
+          result[j],
+          result[i]
+        ];
+
+      }
+
+
+      return result;
+
+    }
+
+
+    function prepareQuestion(question) {
+
+      return {
+
+        ...question,
+
+        shuffledOptions:
+          shuffle(
+            question.o.map(
+              (text, index) => ({
+                text,
+                correct:
+                  index === question.a
+              })
+            )
+          )
+
+      };
+
+    }
+
+
+    function getQuestionPool() {
+
+      return questions.filter(
+        question => {
+
+          const correctGoal =
+            goalSelect.value === "all" ||
+            String(question.g) === goalSelect.value;
+
+
+          const correctType =
+            typeSelect.value === "all" ||
+            question.d === typeSelect.value;
+
+
+          return (
+            correctGoal &&
+            correctType
+          );
+
+        }
+      );
+
+    }
+
+
+    /*
+      ==================================================
+      REPETITION MODE
+      ==================================================
+    */
+
+    function repetitionOrder(pool) {
+
+      const statistics =
+        getStatistics();
+
+
+      const previouslyWrong =
+        pool.filter(
+          question =>
+            (
+              statistics[
+                questionKey(question)
+              ]?.wrong || 0
+            ) > 0
+        );
+
+
+      /*
+        If the student hasn't answered
+        anything incorrectly yet,
+        Repetitionsläge still works as
+        a normal mixed quiz.
+      */
+
+      if (!previouslyWrong.length) {
+
+        return shuffle(pool);
+
+      }
+
+
+      previouslyWrong.sort(
+        (a, b) => {
+
+          const statA =
+            statistics[
+              questionKey(a)
+            ];
+
+          const statB =
+            statistics[
+              questionKey(b)
+            ];
+
+
+          const errorRateA =
+            statA.wrong /
+            Math.max(
+              statA.attempts,
+              1
+            );
+
+
+          const errorRateB =
+            statB.wrong /
+            Math.max(
+              statB.attempts,
+              1
+            );
+
+
+          return (
+            errorRateB -
+            errorRateA
+          );
+
+        }
+      );
+
+
+      const otherQuestions =
+        shuffle(
+          pool.filter(
+            question =>
+              !previouslyWrong.includes(
+                question
+              )
+          )
+        );
+
+
+      return [
+        ...previouslyWrong,
+        ...otherQuestions
+      ];
+
+    }
+
+
+    /*
+      ==================================================
+      START QUIZ
+      ==================================================
+    */
+
+    function startQuiz(
+      customQuestions = null
+    ) {
+
+      currentMode =
+        modeSelect.value;
+
+
+      let pool =
+        customQuestions ||
+        getQuestionPool();
+
+
+      if (
+        !customQuestions &&
+        currentMode === "repeat"
+      ) {
+
+        pool =
+          repetitionOrder(pool);
+
+      }
+
+
+      let numberOfQuestions;
+
+
+      if (
+        countSelect.value === "all"
+      ) {
+
+        numberOfQuestions =
+          pool.length;
+
+      } else {
+
+        numberOfQuestions =
+          Math.min(
+            Number(
+              countSelect.value
+            ),
+            pool.length
+          );
+
+      }
+
+
+      /*
+        Repetitionsläge keeps the
+        prioritized order.
+
+        Other modes randomize the
+        question order.
+      */
+
+      if (
+        currentMode === "repeat" &&
+        !customQuestions
+      ) {
+
+        activeQuestions =
+          pool
+            .slice(
+              0,
+              numberOfQuestions
+            )
+            .map(
+              prepareQuestion
+            );
+
+      } else {
+
+        activeQuestions =
+          shuffle(pool)
+            .slice(
+              0,
+              numberOfQuestions
+            )
+            .map(
+              prepareQuestion
+            );
+
+      }
+
+
+      currentQuestion = 0;
+
+      score = 0;
+
+      answers = [];
+
+      answerLocked = false;
+
+
+      setup.classList.add(
+        "hidden"
+      );
+
+      result.classList.add(
+        "hidden"
+      );
+
+      quiz.classList.remove(
+        "hidden"
+      );
+
+
+      renderQuestion();
+
+    }
+
+
+    /*
+      ==================================================
+      DISPLAY QUESTION
+      ==================================================
+    */
+
+    function renderQuestion() {
+
+      answerLocked = false;
+
+
+      const question =
+        activeQuestions[
+          currentQuestion
+        ];
+
+
+      questionMeta.textContent =
+        `Kursmål ${question.g} · ${
+          question.d === "concept"
+            ? "Begrepp"
+            : "Resonemang & tillämpning"
+        }`;
+
+
+      progressText.textContent =
+        `Fråga ${
+          currentQuestion + 1
+        } av ${
+          activeQuestions.length
+        }`;
+
+
+      progressBar.style.width =
+        `${
+          (
+            (
+              currentQuestion + 1
+            ) /
+            activeQuestions.length
+          ) *
+          100
+        }%`;
+
+
+      if (
+        currentMode === "exam"
+      ) {
+
+        scoreText.textContent =
+          "Provläge";
+
+      } else if (
+        currentMode === "repeat"
+      ) {
+
+        scoreText.textContent =
+          `Repetition · Rätt: ${score}`;
+
+      } else {
+
+        scoreText.textContent =
+          `Rätt: ${score}`;
+
+      }
+
+
+      questionText.textContent =
+        question.q;
+
+
+      optionsElement.innerHTML =
+        "";
+
+
+      hintElement.classList.add(
+        "hidden"
+      );
+
+      feedback.classList.add(
+        "hidden"
+      );
+
+      nextButton.classList.add(
+        "hidden"
+      );
+
+      hintButton.classList.remove(
+        "hidden"
+      );
+
+      hintButton.textContent =
+        "Visa ledtråd";
+
+
+      question.shuffledOptions.forEach(
+        (option, index) => {
+
+          const button =
+            document.createElement(
+              "button"
+            );
+
+
+          button.className =
+            "option";
+
+
+          button.textContent =
+            option.text;
+
+
+          button.addEventListener(
+            "click",
+            () =>
+              answerQuestion(index)
+          );
+
+
+          optionsElement.appendChild(
+            button
+          );
+
+        }
+      );
+
+    }
+
+
+    /*
+      ==================================================
+      ANSWER
+      ==================================================
+    */
+
+    function answerQuestion(index) {
+
+      if (answerLocked) {
+
+        return;
+
+      }
+
+
+      answerLocked = true;
+
+
+      const question =
+        activeQuestions[
+          currentQuestion
+        ];
+
+
+      const selected =
+        question
+          .shuffledOptions[
+            index
+          ];
+
+
+      if (selected.correct) {
+
+        score++;
+
+      }
+
+
+      recordAnswer(
+        question,
+        selected.correct
+      );
+
+
+      answers.push({
+
+        question,
+
+        selected:
+          selected.text,
+
+        correct:
+          selected.correct
+
+      });
+
+
+      const optionButtons =
+        [
+          ...optionsElement.children
+        ];
+
+
+      optionButtons.forEach(
+        (button, optionIndex) => {
+
+          button.disabled =
+            true;
+
+
+          /*
+            Provläge does not show
+            the answer during the quiz.
+          */
+
+          if (
+            currentMode !== "exam"
+          ) {
+
+            if (
+              question
+                .shuffledOptions[
+                  optionIndex
+                ]
+                .correct
+            ) {
+
+              button.classList.add(
+                "correct"
+              );
+
+            }
+
+
+            if (
+              optionIndex === index &&
+              !question
+                .shuffledOptions[
+                  optionIndex
+                ]
+                .correct
+            ) {
+
+              button.classList.add(
+                "wrong"
+              );
+
+            }
+
+          }
+
+        }
+      );
+
+
+      hintButton.classList.add(
+        "hidden"
+      );
+
+
+      /*
+        Lärläge and Repetitionsläge
+        show explanations directly.
+      */
+
+      if (
+        currentMode !== "exam"
+      ) {
+
+        feedback.classList.remove(
+          "hidden"
+        );
+
+
+        feedback.innerHTML = `
+
+          <strong>
+            ${
+              selected.correct
+                ? "Rätt!"
+                : "Inte riktigt."
+            }
+          </strong>
+
+          <br /><br />
+
+          ${question.e}
+
+        `;
+
+
+        if (
+          currentMode === "repeat"
+        ) {
+
+          scoreText.textContent =
+            `Repetition · Rätt: ${score}`;
+
+        } else {
+
+          scoreText.textContent =
+            `Rätt: ${score}`;
+
+        }
+
+      }
+
+
+      nextButton.classList.remove(
+        "hidden"
+      );
+
+
+      if (
+        currentQuestion ===
+        activeQuestions.length - 1
+      ) {
+
+        nextButton.textContent =
+          "Visa resultat";
+
+      } else {
+
+        nextButton.textContent =
+          "Nästa fråga";
+
+      }
+
+    }
+
+
+    /*
+      ==================================================
+      RESULT
+      ==================================================
+    */
+
+    function showResult() {
+
+      quiz.classList.add(
+        "hidden"
+      );
+
+      result.classList.remove(
+        "hidden"
+      );
+
+
+      const percentage =
+        Math.round(
+          (
+            score /
+            activeQuestions.length
+          ) *
+          100
+        );
+
+
+      finalScore.textContent =
+        `${score} / ${
+          activeQuestions.length
+        } (${percentage}%)`;
+
+
+      if (
+        percentage >= 85
+      ) {
+
+        resultMessage.textContent =
+          "Mycket bra. Du verkar ha bra kontroll på materialet.";
+
+      } else if (
+        percentage >= 65
+      ) {
+
+        resultMessage.textContent =
+          "Bra grund. Repetera frågorna du missade och försök förklara sambanden med egna ord.";
+
+      } else {
+
+        resultMessage.textContent =
+          "Fortsätt repetera materialet. Använd förklaringarna för att förstå varför ett svar är rätt.";
+
+      }
+
+
+      /*
+        Results per course goal
+      */
+
+      const statisticsByGoal = {};
+
+
+      answers.forEach(
+        answer => {
+
+          const goal =
+            answer.question.g;
+
+
+          if (
+            !statisticsByGoal[
+              goal
+            ]
+          ) {
+
+            statisticsByGoal[
+              goal
+            ] = {
+              correct: 0,
+              total: 0
+            };
+
+          }
+
+
+          statisticsByGoal[
+            goal
+          ].total++;
+
+
+          if (
+            answer.correct
+          ) {
+
+            statisticsByGoal[
+              goal
+            ].correct++;
+
+          }
+
+        }
+      );
+
+
+      goalResults.innerHTML =
+        "";
+
+
+      Object.keys(
+        statisticsByGoal
+      )
+        .sort(
+          (a, b) =>
+            Number(a) -
+            Number(b)
+        )
+        .forEach(
+          goal => {
+
+            const data =
+              statisticsByGoal[
+                goal
+              ];
+
+
+            const card =
+              document.createElement(
+                "div"
+              );
+
+
+            card.className =
+              "card";
+
+
+            card.innerHTML = `
+
+              <strong>
+                Kursmål ${goal}
+              </strong>
+
+              <div class="muted">
+                ${data.correct}
+                av
+                ${data.total}
+                rätt
+              </div>
+
+            `;
+
+
+            goalResults.appendChild(
+              card
+            );
+
+          }
+        );
+
+
+      /*
+        Wrong-answer review
+      */
+
+      const wrongAnswers =
+        answers.filter(
+          answer =>
+            !answer.correct
+        );
+
+
+      review.innerHTML =
+        "";
+
+
+      if (
+        wrongAnswers.length
+      ) {
+
+        reviewSection.classList.remove(
+          "hidden"
+        );
+
+        retryWrong.classList.remove(
+          "hidden"
+        );
+
+
+        wrongAnswers.forEach(
+          answer => {
+
+            const question =
+              answer.question;
+
+
+            const correctAnswer =
+              question
+                .shuffledOptions
+                .find(
+                  option =>
+                    option.correct
+                )
+                .text;
+
+
+            const element =
+              document.createElement(
+                "div"
+              );
+
+
+            element.className =
+              "review-item";
+
+
+            element.innerHTML = `
+
+              <div class="tag">
+                Kursmål ${question.g}
+              </div>
+
+              <h3>
+                ${question.q}
+              </h3>
+
+              <p>
+                <strong>
+                  Ditt svar:
+                </strong>
+
+                ${answer.selected}
+              </p>
+
+              <p>
+                <strong>
+                  Rätt svar:
+                </strong>
+
+                ${correctAnswer}
+              </p>
+
+              <p class="muted">
+                ${question.e}
+              </p>
+
+            `;
+
+
+            review.appendChild(
+              element
+            );
+
+          }
+        );
+
+      } else {
+
+        reviewSection.classList.add(
+          "hidden"
+        );
+
+        retryWrong.classList.add(
+          "hidden"
+        );
+
+      }
+
+    }
+
+
+    /*
+      ==================================================
+      EVENTS
+      ==================================================
+    */
+
+    startButton.addEventListener(
+      "click",
+      () => startQuiz()
+    );
+
+
+    hintButton.addEventListener(
+      "click",
+      () => {
+
+        const question =
+          activeQuestions[
+            currentQuestion
+          ];
+
+
+        hintElement.textContent =
+          question.h;
+
+
+        hintElement.classList.toggle(
+          "hidden"
+        );
+
+
+        if (
+          hintElement.classList.contains(
+            "hidden"
+          )
+        ) {
+
+          hintButton.textContent =
+            "Visa ledtråd";
+
+        } else {
+
+          hintButton.textContent =
+            "Dölj ledtråd";
+
+        }
+
+      }
+    );
+
+
+    nextButton.addEventListener(
+      "click",
+      () => {
+
+        if (!answerLocked) {
+
+          return;
+
+        }
+
+
+        if (
+          currentQuestion <
+          activeQuestions.length - 1
+        ) {
+
+          currentQuestion++;
+
+          renderQuestion();
+
+        } else {
+
+          showResult();
+
+        }
+
+      }
+    );
+
+
+    restartButton.addEventListener(
+      "click",
+      () => {
+
+        result.classList.add(
+          "hidden"
+        );
+
+        quiz.classList.add(
+          "hidden"
+        );
+
+        setup.classList.remove(
+          "hidden"
+        );
+
+      }
+    );
+
+
+    retryWrong.addEventListener(
+      "click",
+      () => {
+
+        const wrongQuestions =
+          answers
+            .filter(
+              answer =>
+                !answer.correct
+            )
+            .map(
+              answer => {
+
+                const q =
+                  answer.question;
+
+                return {
+
+                  g: q.g,
+                  d: q.d,
+                  q: q.q,
+                  o: q.o,
+                  a: q.a,
+                  h: q.h,
+                  e: q.e
+
+                };
+
+              }
+            );
+
+
+        if (
+          wrongQuestions.length
+        ) {
+
+          startQuiz(
+            wrongQuestions
+          );
+
+        }
+
+      }
+    );
+
+
+    resetStatistics.addEventListener(
+      "click",
+      () => {
+
+        localStorage.removeItem(
+          statisticsKey
+        );
+
+
+        alert(
+          "Repetitionsstatistiken är nollställd."
+        );
+
+      }
+    );
+
+  </script>
+
 </body>
 </html>
