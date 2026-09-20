@@ -1,153 +1,633 @@
 <!doctype html>
 <html lang="sv">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DevOps i techbranschen – Quiz</title>
-  <style>
-    :root{--bg:#f7f7fb;--card:#fff;--text:#17181c;--muted:#676b75;--border:#dedfe7;--accent:#6554d9;--accentSoft:#efedff;--ok:#237a4b;--okSoft:#e9f7ef;--bad:#b33a3a;--badSoft:#fbecec}
-    *{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
-    button,select{font:inherit}.app{max-width:900px;margin:0 auto;padding:24px 16px 48px}.top{margin-bottom:20px}.eyebrow{font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}.title{font-size:32px;line-height:1.15;margin:6px 0}.sub{color:var(--muted);max-width:720px;line-height:1.6}.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}.grid{display:grid;gap:14px;grid-template-columns:repeat(4,minmax(0,1fr))}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:white}.info{margin-top:14px;background:#f1f2f7;border:1px solid var(--border);border-radius:12px;padding:14px;line-height:1.55;font-size:14px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:1px solid var(--border);background:white;border-radius:10px;padding:11px 15px;font-weight:700;cursor:pointer}.btn.primary{background:var(--accent);color:white;border-color:var(--accent)}.btn:disabled{opacity:.55;cursor:not-allowed}.hidden{display:none!important}.quiz-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;flex-wrap:wrap}.meta{font-size:14px;font-weight:700}.small{font-size:13px;color:var(--muted)}.bar{height:8px;background:#ececf2;border-radius:999px;overflow:hidden;margin:12px 0 18px}.bar>div{height:100%;background:var(--accent);width:0;transition:width .2s}.question{font-size:21px;line-height:1.45;margin:0 0 16px}.options{display:grid;gap:10px}.opt{width:100%;text-align:left;border:1px solid var(--border);background:white;border-radius:12px;padding:14px;cursor:pointer;line-height:1.45}.opt:hover{border-color:#b9b5dc}.opt.correct{border-color:var(--ok);background:var(--okSoft)}.opt.wrong{border-color:var(--bad);background:var(--badSoft)}.box{margin-top:14px;padding:14px;border-radius:12px;border:1px solid var(--border);line-height:1.55}.hint{background:#f7f4e9}.feedback{background:#f4f4fa}.result-score{font-size:36px;font-weight:800;margin:8px 0}.breakdown{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}.review{display:grid;gap:10px;margin-top:10px}.review-item{border:1px solid var(--border);border-radius:12px;padding:14px;background:white}.tag{font-size:12px;color:var(--muted);font-weight:700}.review-item h4{margin:5px 0 8px;font-size:15px}.review-item p{margin:4px 0;font-size:14px;line-height:1.5}@media(max-width:760px){.grid{grid-template-columns:1fr 1fr}.title{font-size:27px}}@media(max-width:480px){.grid{grid-template-columns:1fr}.app{padding:16px 12px 36px}.card{padding:16px}.question{font-size:19px}.breakdown{grid-template-columns:1fr}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevOps i techbranschen – Quiz</title>
+<style>
+:root{--bg:#f7f7fb;--card:#fff;--text:#17181c;--muted:#676b75;--border:#dedfe7;--accent:#6554d9;--soft:#efedff;--ok:#237a4b;--oksoft:#e9f7ef;--bad:#a43a3a;--badsoft:#fbecec}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,select{font:inherit}.app{max-width:920px;margin:auto;padding:28px 16px 60px}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}h1{font-size:32px;margin:6px 0 8px}.sub{color:var(--muted);line-height:1.55}.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}label span{display:block;font-size:13px;font-weight:700;margin-bottom:6px}select{width:100%;border:1px solid var(--border);border-radius:10px;padding:12px;background:white}.info{margin-top:14px;padding:14px;border-radius:12px;background:var(--soft);line-height:1.5;font-size:14px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:1px solid var(--border);background:white;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}.primary{background:var(--accent);border-color:var(--accent);color:white}.hidden{display:none!important}.toprow{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;flex-wrap:wrap}.progress{height:8px;background:#ececf2;border-radius:99px;overflow:hidden;margin:10px 0 16px}.bar{height:100%;background:var(--accent);width:0}.q{font-size:20px;line-height:1.45;margin:4px 0 16px}.options{display:grid;gap:10px}.opt{text-align:left;border:1px solid var(--border);border-radius:12px;background:white;padding:14px;cursor:pointer;line-height:1.4}.opt:hover{border-color:#b7b0e8}.opt:disabled{cursor:default}.opt.correct{border-color:var(--ok);background:var(--oksoft)}.opt.wrong{border-color:var(--bad);background:var(--badsoft)}.box{margin-top:14px;border:1px solid var(--border);border-radius:12px;padding:14px;line-height:1.5}.resultScore{font-size:34px;font-weight:800;margin-top:8px}.breakdown{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.item{border:1px solid var(--border);border-radius:12px;padding:13px}.review{display:grid;gap:10px}.small{font-size:13px;color:var(--muted)}@media(max-width:720px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:480px){.grid,.breakdown{grid-template-columns:1fr}h1{font-size:26px}}
+</style>
 </head>
 <body>
-<main class="app" id="app">
-  <section id="setup">
-    <div class="top"><div class="eyebrow">Studieapp</div><h1 class="title">DevOps i techbranschen – Quiz</h1><p class="sub">Träna på Kursmål 1–8. Frågorna blandar begrepp med resonemang, jämförelser och realistiska situationer så att du tränar både fakta och djupare förståelse.</p></div>
-    <div class="card">
-      <div class="grid">
-        <div class="field"><label for="goal">Kursmål</label><select id="goal"><option value="all">Alla kursmål</option><option value="1">Kursmål 1</option><option value="2">Kursmål 2</option><option value="3">Kursmål 3</option><option value="4">Kursmål 4</option><option value="5">Kursmål 5</option><option value="6">Kursmål 6</option><option value="7">Kursmål 7</option><option value="8">Kursmål 8</option></select></div>
-        <div class="field"><label for="depth">Frågetyp</label><select id="depth"><option value="all">Blandat</option><option value="concept">Begrepp</option><option value="reason">Resonemang & tillämpning</option></select></div>
-        <div class="field"><label for="count">Antal frågor</label><select id="count"><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option><option value="all">Alla tillgängliga</option></select></div>
-        <div class="field"><label for="mode">Läge</label><select id="mode"><option value="learn" selected>Lärläge</option><option value="exam">Provläge</option><option value="repeat">Repetitionsläge</option></select></div>
-      </div>
-      <div class="info"><strong>Begrepp</strong> testar att du förstår vad något är. <strong>Resonemang & tillämpning</strong> testar om du kan använda teorin i en situation, jämföra val och förstå konsekvenser.<br><br><strong>Lärläge</strong> visar förklaringen direkt. <strong>Provläge</strong> väntar med facit till slutet. <strong>Repetitionsläge</strong> prioriterar frågor du tidigare har svarat fel på.</div>
-      <div class="actions"><button class="btn primary" id="start">Starta quiz</button></div>
+<main class="app">
+<section id="setup">
+  <div class="eyebrow">DevOps i techbranschen</div>
+  <h1>Quiz</h1>
+  <p class="sub">Frågorna är gjorda för att testa förståelse, inte bara igenkänning. Flera alternativ kan låta rimliga – välj det som bäst löser situationen utifrån kursmaterialet.</p>
+  <div class="card">
+    <div class="grid">
+      <label><span>Kursmål</span><select id="goal"><option value="all">Alla kursmål</option><option value="1">Kursmål 1</option><option value="2">Kursmål 2</option><option value="3">Kursmål 3</option><option value="4">Kursmål 4</option><option value="5">Kursmål 5</option><option value="6">Kursmål 6</option><option value="7">Kursmål 7</option><option value="8">Kursmål 8</option></select></label>
+      <label><span>Frågetyp</span><select id="depth"><option value="all">Blandat</option><option value="concept">Begrepp</option><option value="reason">Resonemang & tillämpning</option></select></label>
+      <label><span>Antal frågor</span><select id="count"><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option><option value="all">Alla tillgängliga</option></select></label>
+      <label><span>Läge</span><select id="mode"><option value="learn" selected>Lärläge</option><option value="exam">Provläge</option><option value="repeat">Repetitionsläge</option></select></label>
     </div>
-  </section>
+    <div class="info"><strong>Lärläge:</strong> förklaring direkt. <strong>Provläge:</strong> facit visas först i resultatet. <strong>Repetitionsläge:</strong> prioriterar frågor du tidigare haft fel på.</div>
+    <div class="actions"><button class="btn primary" id="start">Starta quiz</button></div>
+  </div>
+</section>
 
-  <section id="quiz" class="hidden">
-    <div class="quiz-head"><div><div class="meta" id="meta"></div><div class="small" id="progressText"></div></div><div class="meta" id="scoreText"></div></div>
-    <div class="bar"><div id="progress"></div></div>
-    <div class="card"><h2 class="question" id="question"></h2><div class="options" id="options"></div><div class="actions"><button class="btn" id="hintBtn">Visa ledtråd</button><button class="btn primary hidden" id="nextBtn">Nästa fråga</button></div><div class="box hint hidden" id="hint"></div><div class="box feedback hidden" id="feedback"></div></div>
-  </section>
+<section id="quiz" class="hidden">
+  <div class="toprow"><div><div id="meta" class="eyebrow"></div><div id="progressText" class="small"></div></div><strong id="score"></strong></div>
+  <div class="progress"><div id="bar" class="bar"></div></div>
+  <div class="card">
+    <div id="question" class="q"></div>
+    <div id="options" class="options"></div>
+    <div class="actions"><button class="btn" id="hintBtn">Visa ledtråd</button><button class="btn primary hidden" id="next">Nästa fråga</button></div>
+    <div id="hint" class="box hidden"></div>
+    <div id="feedback" class="box hidden"></div>
+  </div>
+</section>
 
-  <section id="result" class="hidden">
-    <div class="card"><div class="eyebrow">Resultat</div><div class="result-score" id="finalScore"></div><p class="sub" id="resultMsg"></p></div>
-    <div class="card" style="margin-top:14px"><h3>Per kursmål</h3><div class="breakdown" id="breakdown"></div></div>
-    <div class="card hidden" id="reviewWrap" style="margin-top:14px"><h3>Frågor att repetera</h3><div class="review" id="review"></div></div>
-    <div class="actions"><button class="btn hidden" id="retry">Träna på fel svar</button><button class="btn primary" id="restart">Ny omgång</button></div>
-  </section>
+<section id="result" class="hidden">
+  <div class="card"><div class="eyebrow">Resultat</div><div id="finalScore" class="resultScore"></div><p id="resultMsg" class="sub"></p></div>
+  <div class="card" style="margin-top:14px"><h3>Per kursmål</h3><div id="breakdown" class="breakdown"></div></div>
+  <div class="card hidden" id="reviewWrap" style="margin-top:14px"><h3>Frågor att repetera</h3><div id="review" class="review"></div></div>
+  <div class="actions"><button class="btn hidden" id="retry">Träna på fel svar</button><button class="btn primary" id="restart">Ny omgång</button></div>
+</section>
 </main>
 <script>
 const qs = [
-{g:1,d:'concept',q:'Vad beskriver bäst huvudproblemet med separata Dev- och Ops-silos?',o:['De använder alltid olika operativsystem','De kan arbeta mot olika mål och lämnar över arbetet mellan teamen','Utvecklare kan inte testa kod','Drift får inte använda automation'],a:1,h:'Fundera på skillnaden mellan snabb förändring och stabil drift.',e:'Development vill ofta leverera förändringar snabbt medan Operations prioriterar stabilitet och tillgänglighet. När teamen arbetar isolerat skapas överlämningar, väntetider och missförstånd.'},
-{g:1,d:'concept',q:'Vilken beskrivning passar bäst på DevOps-funktionen i ett utvecklingsprojekt?',o:['Att endast administrera servrar','Att koppla ihop utveckling, test, deployment och drift genom samarbete och automation','Att ersätta projektledaren','Att enbart utveckla backend'],a:1,h:'Tänk på flödet hela vägen från kod till produktion.',e:'DevOps arbetar med helheten runt leveransen: samarbete, pipelines, automation, miljöer, deployment, monitorering och återkoppling.'},
-{g:1,d:'concept',q:'Vad är Infrastructure as Code i DevOps-sammanhang?',o:['Att beskriva och hantera infrastruktur på ett repeterbart och automatiserbart sätt','Att skriva applikationens frontend i molnet','Att lagra loggar i databasen','Att ersätta CI/CD med dokumentation'],a:0,h:'Tänk på skillnaden mellan manuell serverkonfiguration och något som kan upprepas konsekvent.',e:'Infrastructure as Code innebär att infrastrukturen definieras på ett strukturerat sätt så att samma miljö kan skapas och förändras mer konsekvent och mindre manuellt.'},
-{g:1,d:'reason',q:'Ett utvecklingsteam levererar snabbt nya funktioner, men driftteamet får ofta veta om förändringarna först när de ska sättas i produktion. Vad är den viktigaste DevOps-förbättringen?',o:['Låta drift godkänna varje kodrad','Skapa gemensamma processer och automatiserade flöden där drift involveras tidigare','Separera teamen ännu tydligare','Minska antalet tester'],a:1,h:'Problemet uppstår långt före själva deployment-steget.',e:'DevOps försöker minska sena överlämningar. Genom gemensamma processer, tidig samverkan och automatiserade flöden kan driftbehov och produktionskrav fångas tidigare.'},
-{g:1,d:'reason',q:'Ett system fungerar bra vid lansering men efter några månader blir pipelines långsamma, verktyg gamla och kostnaderna i molnet ökar. Vad visar detta?',o:['DevOps behövs bara under utvecklingsprojektet','DevOps-arbetet fortsätter även i linjeorganisationen efter lansering','Systemet bör alltid byggas om från grunden','Monitorering är bara viktig före produktion'],a:1,h:'Tänk på vad som händer med ett system efter att projektfasen är slut.',e:'DevOps är inte färdigt när systemet går live. Pipelines, verktyg, säkerhet, kapacitet, kostnader och tillförlitlighet behöver underhållas och förbättras över tid.'},
-{g:1,d:'reason',q:'Varför minskar automation ofta risken för fel i återkommande driftuppgifter?',o:['För att automation gör att inga fel någonsin kan uppstå','För att samma definierade process kan upprepas konsekvent istället för att göras manuellt varje gång','För att automation tar bort behovet av testning','För att människor inte längre behöver förstå systemen'],a:1,h:'Jämför en identisk repeterbar process med många manuella steg.',e:'Manuella repetitiva uppgifter kan utföras olika från gång till gång. Automation gör processen mer konsekvent och repeterbar, även om den fortfarande måste designas och testas korrekt.'},
-{g:2,d:'concept',q:'Vad betyder time-to-market?',o:['Hur länge en server är igång','Tiden från idé eller förändring till att värdet når användaren','Hur snabbt en databas svarar','Hur lång en sprint är'],a:1,h:'Tänk på hela vägen från idé till faktisk användning.',e:'Time-to-market beskriver hur snabbt en idé eller förändring kan bli något som användare eller kunder faktiskt får nytta av.'},
-{g:2,d:'concept',q:'Vilket är ett centralt affärsmål med DevOps?',o:['Att använda fler tekniska verktyg','Att leverera värde snabbare och mer tillförlitligt','Att göra infrastrukturen så komplex som möjligt','Att minimera all förändring'],a:1,h:'Tekniken ska stödja verksamheten.',e:'DevOps handlar inte om automation för automationens skull. Målet är bland annat snabbare leveranser, högre kvalitet, stabilare drift och effektivare användning av tid och resurser.'},
-{g:2,d:'concept',q:'Vad menas med en MVP?',o:['Den största möjliga produktversionen','En mindre första version som innehåller tillräckligt för att testa värde och få feedback','En produktionsserver','En typ av CI/CD-pipeline'],a:1,h:'Tänk på att testa en idé utan att först bygga allt.',e:'En Minimum Viable Product är en mindre fungerande version som gör det möjligt att testa antaganden och samla verklig feedback tidigt.'},
-{g:2,d:'reason',q:'Ett företag har en deploymentprocess som tar två dagar och kräver många manuella steg. Vilken affärseffekt kan automation ge?',o:['Endast snyggare kod','Kortare ledtid, mindre manuellt arbete och lägre risk för mänskliga fel','Fler överlämningar mellan team','Att företaget aldrig behöver testa igen'],a:1,h:'Fundera både på tid och risk.',e:'Automation kan göra processen snabbare och mer konsekvent. Det kan minska kostnaden för manuellt arbete och göra det lättare att leverera mindre förändringar oftare.'},
-{g:2,d:'reason',q:'En startup bygger en stor produkt i ett år utan att visa något för användare. Vilken DevOps/agil tanke saknas tydligast?',o:['Att använda fler programmeringsspråk','Att leverera mindre steg, få feedback tidigt och iterera','Att alltid välja mikrotjänster','Att undvika automation'],a:1,h:'Tänk på MVP och snabb återkoppling.',e:'Genom små leveranser och tidig feedback kan företaget upptäcka felaktiga antaganden innan mycket tid och pengar har investerats.'},
-{g:2,d:'reason',q:'Två tekniska lösningar löser samma problem. Den ena är mycket avancerad men dyr att underhålla, den andra enklare och uppfyller företagets behov. Vilket resonemang passar bäst?',o:['Den mest avancerade tekniken är alltid bäst','Teknikvalet bör vägas mot affärsnytta, kostnad, risk och faktiska behov','Den billigaste lösningen är alltid bäst','DevOps handlar inte om affärsperspektiv'],a:1,h:'Ett tekniskt val är också ett verksamhetsbeslut.',e:'En DevOps-roll behöver förstå att tekniska lösningar påverkar kostnad, leveranstid, stabilitet och framtida underhåll. Mer avancerat betyder inte automatiskt mer lämpligt.'},
-{g:3,d:'concept',q:'Vilket lager ansvarar främst för det användaren ser och interagerar med?',o:['Front-End','Back-End','Databas','Infrastruktur'],a:0,h:'Tänk på knappar, menyer och gränssnitt.',e:'Front-End är det användarnära lagret och hanterar bland annat gränssnitt och interaktion.'},
-{g:3,d:'concept',q:'Vad arbetar en backend-utvecklare främst med?',o:['Visuell design','Serverlogik, API:er och datahantering','Fysisk nätverkskabel','Endast användartester'],a:1,h:'Tänk på det som sker bakom användargränssnittet.',e:'Backend hanterar logik och data bakom gränssnittet, exempelvis affärslogik, autentisering, API:er och databaskommunikation.'},
-{g:3,d:'concept',q:'Vad gör en QA/testare?',o:['Prioriterar företagets budget','Verifierar kvalitet och att systemet fungerar enligt krav','Skapar enbart molnservrar','Bestämmer organisationens affärsmodell'],a:1,h:'Rollen fokuserar på kvalitetssäkring.',e:'QA/test arbetar med att hitta problem och verifiera att systemet beter sig som förväntat genom manuella eller automatiserade tester.'},
-{g:3,d:'reason',q:'Ett fel uppstår när frontend anropar backend och får oväntad data. Vilka roller behöver sannolikt samarbeta först?',o:['Frontend- och backend-utvecklare','Endast UX-designer','Endast ekonomichef','Endast nätverkstekniker'],a:0,h:'Problemet ligger i gränsen mellan två delar av systemet.',e:'När problemet ligger i kommunikationen mellan gränssnitt och serverlogik behöver frontend och backend ofta felsöka tillsammans och kontrollera både anrop och svar.'},
-{g:3,d:'reason',q:'Ett team har byggt en funktion som fungerar lokalt men misslyckas ofta vid deployment. Vilken roll är särskilt relevant för att förbättra själva leveransflödet?',o:['DevOps-ingenjör','UX-designer','Produktägare','Data Scientist'],a:0,h:'Frågan gäller vägen från utvecklingsmiljö till driftmiljö.',e:'DevOps arbetar bland annat med miljöer, pipelines och deployment så att förändringar kan flyttas mellan utveckling, test och produktion på ett stabilt sätt.'},
-{g:3,d:'reason',q:'Varför är det missvisande att säga att DevOps endast hör hemma i infrastrukturlagret?',o:['DevOps arbetar ofta över flera lager och processer även om infrastruktur är ett viktigt fokus','DevOps arbetar aldrig med infrastruktur','DevOps är egentligen en frontendroll','DevOps ersätter alla andra roller'],a:0,h:'Tänk på CI/CD, monitorering och samarbete.',e:'DevOps har ofta stark koppling till infrastruktur men påverkar hela leveransflödet, inklusive utveckling, test, deployment, drift, monitorering och återkoppling.'},
-{g:4,d:'concept',q:'Vilken frontendteknik används i MERN?',o:['React','Angular','Vue','Apache'],a:0,h:'Bokstaven R är ledtråden.',e:'MERN står för MongoDB, Express, React och Node.js.'},
-{g:4,d:'concept',q:'Vad är den centrala skillnaden mellan MEAN, MERN och MEVN?',o:['Vilken frontendteknik som används','Vilket operativsystem som används','Om databasen är relationell','Vilken molnleverantör som används'],a:0,h:'M, E och N är gemensamma.',e:'Stackarna delar MongoDB, Express och Node.js. Skillnaden är Angular i MEAN, React i MERN och Vue i MEVN.'},
-{g:4,d:'concept',q:'Vilka delar ingår traditionellt i LAMP?',o:['Linux, Apache, MySQL och PHP/Perl/Python','Linux, Angular, MongoDB och Python','Laravel, Azure, MySQL och PHP','Linux, Apache, MongoDB och React'],a:0,h:'Namnet kommer från initialerna.',e:'LAMP beskriver Linux som operativsystem, Apache som webbserver, MySQL som databas och PHP/Perl/Python som serverspråk.'},
-{g:4,d:'reason',q:'Ett team kan redan React, Node.js och JavaScript väl och behöver snabbt bygga en webbapplikation. Vilket teknikval är mest naturligt av dessa?',o:['MERN','LAMP','En ren .NET-stack','LNMP med PHP'],a:0,h:'Utgå från kompetensen teamet redan har.',e:'MERN passar väl när teamet redan arbetar med React och Node.js. Ett viktigt kriterium vid teknikval är befintlig kompetens, inte bara teknisk popularitet.'},
-{g:4,d:'reason',q:'Varför kan det vara dåligt att välja en teknikstack enbart för att den är populär?',o:['Popularitet betyder alltid att tekniken är osäker','Valet måste också passa systemets behov, kompetens, skalbarhet, säkerhet och tid till marknad','Populära tekniker får inte användas i företag','Alla teknikstackar är identiska'],a:1,h:'Teknikval är kontextberoende.',e:'En stack kan vara mycket populär men ändå vara fel för ett specifikt projekt. Valet bör utgå från krav, befintlig kompetens, säkerhet, skalbarhet, drift och affärsbehov.'},
-{g:4,d:'reason',q:'Ett företag har lång erfarenhet av C#, SQL Server och Azure. Vad talar starkast för att fortsätta med .NET i ett nytt liknande system?',o:['Tekniken är automatiskt bäst i alla projekt','Teamets kompetens och befintliga ekosystem kan minska utvecklings- och driftsrisk','Alla molnapplikationer måste använda .NET','JavaScript går inte att köra i molnet'],a:1,h:'Tänk på kostnaden att byta hela ekosystemet.',e:'Befintlig kompetens, verktyg och driftmiljö är viktiga faktorer. Ett teknikbyte kan skapa utbildningsbehov och nya risker utan att ge tillräcklig nytta.'},
-{g:5,d:'concept',q:'Vad kännetecknar en monolitisk arkitektur?',o:['Systemet består alltid av hundratals fristående tjänster','Funktionaliteten ligger i en sammanhängande applikation som normalt driftsätts tillsammans','Varje funktion har en egen databas och server','Frontend saknas'],a:1,h:'Tänk ”allt-i-ett”.',e:'I en monolit ligger systemets funktioner i samma större applikation eller kodbas och deployment sker normalt som en helhet.'},
-{g:5,d:'concept',q:'Vad kännetecknar mikrotjänster?',o:['Små självständiga tjänster med tydligt ansvar som kommunicerar med varandra','En enda stor kodbas','Ett system utan nätverkskommunikation','En frontend utan backend'],a:0,h:'Fokusera på uppdelning och självständighet.',e:'Mikrotjänster delar upp systemet i flera mindre tjänster som ansvarar för olika funktioner och kommunicerar över nätverket.'},
-{g:5,d:'concept',q:'Vilken är en vanlig fördel med mikrotjänster?',o:['Alla delar måste skalas samtidigt','En tjänst kan ofta utvecklas och skalas mer oberoende','Systemet behöver ingen monitorering','Deployment blir alltid enklare'],a:1,h:'Tänk på oberoende tjänster.',e:'Eftersom tjänsterna är separata kan en viss del ofta ändras eller skalas utan att hela systemet måste behandlas som en enda enhet.'},
-{g:5,d:'reason',q:'En liten startup bygger sin första MVP med tre utvecklare och enkel affärslogik. Vilket arkitekturval är oftast mest rimligt från början?',o:['En enklare monolit','Hundratals mikrotjänster','Ett separat Kubernetes-kluster per funktion','Flera olika databaser för varje liten funktion'],a:0,h:'Undvik komplexitet som inte behövs ännu.',e:'För en liten MVP kan en monolit vara snabbare och enklare att bygga, testa och driftsätta. Mikrotjänster bör normalt motiveras av verkliga behov snarare än införas automatiskt.'},
-{g:5,d:'reason',q:'Ett e-handelssystem har mycket hög belastning på produktsökning men ganska låg belastning på kundprofilen. Vilken fördel med mikrotjänster är särskilt relevant?',o:['Man kan skala endast söktjänsten','Man måste skala hela systemet lika mycket','Alla tjänster måste använda samma programmeringsspråk','Monitorering behövs inte'],a:0,h:'Tänk på oberoende skalning.',e:'I en mikrotjänstarkitektur kan en hårt belastad tjänst ofta skalas separat, vilket kan vara mer resurseffektivt än att skala hela applikationen.'},
-{g:5,d:'reason',q:'Varför kräver mikrotjänster ofta en mognare DevOps-kultur än en enkel monolit?',o:['För att mikrotjänster inte kan automatiseras','För att många tjänster innebär fler builds, deployments, beroenden, loggar och komponenter att övervaka','För att monoliter aldrig behöver testas','För att alla tjänster måste drivas manuellt'],a:1,h:'Fler självständiga delar ger också fler saker att hantera.',e:'Mikrotjänster ökar den operativa komplexiteten. Automation, CI/CD, monitorering och bra standardisering blir därför mycket viktigare när antalet tjänster växer.'},
-{g:6,d:'concept',q:'Vad är huvudsyftet med Continuous Integration?',o:['Att integrera förändringar ofta och ge snabb feedback genom automatisk build och test','Att automatiskt driftsätta allt till produktion','Att undvika versionshantering','Att testa först efter release'],a:0,h:'CI handlar om tidig integration och tidig feedback.',e:'Continuous Integration innebär att kodändringar integreras ofta och kontrolleras automatiskt så att problem upptäcks tidigt.'},
-{g:6,d:'concept',q:'Vad är skillnaden mellan Continuous Delivery och Continuous Deployment?',o:['Delivery gör en version redo för release medan Deployment även kan automatisera steget till produktion','Delivery gäller frontend och Deployment backend','Delivery saknar tester','Det finns ingen skillnad'],a:0,h:'Skillnaden ligger nära det sista produktionssteget.',e:'Continuous Delivery håller en godkänd version redo att driftsättas. Continuous Deployment går längre och låter godkända förändringar gå automatiskt till produktion.'},
-{g:6,d:'concept',q:'Vad är en trigger i en pipeline?',o:['En händelse eller ett villkor som startar ett jobb eller steg','En databas','En produktionsserver','Resultatet från ett användartest'],a:0,h:'Tänk på vad som får något att börja.',e:'En trigger kan till exempel vara en push, merge eller att ett föregående pipeline-steg har lyckats.'},
-{g:6,d:'reason',q:'Ett agilt team producerar nya förändringar varje dag men all testning och deployment sker manuellt en gång per månad. Vad blir sannolikt problemet?',o:['Leveransprocessen blir en flaskhals jämfört med utvecklingstakten','Utvecklingen blir automatiskt säkrare','CI/CD behövs mindre','Monitorering ersätter deployment'],a:0,h:'Jämför hastigheten i utvecklingen med hastigheten i leveransen.',e:'Agilt arbete ger liten nytta om färdig kod fastnar i långsamma manuella steg. CI/CD gör att build, test och leverans kan hålla bättre takt med utvecklingen.'},
-{g:6,d:'reason',q:'En kodändring klarar enhetstester men integrationstestet misslyckas. Vad bör en bra pipeline normalt göra?',o:['Stoppa förändringen innan nästa känsliga steg','Deploya ändå eftersom enhetstesterna gick igenom','Radera testresultatet','Flytta direkt till produktion och testa där'],a:0,h:'Tester fungerar som kvalitetsgrindar.',e:'Om ett obligatoriskt test misslyckas bör pipelinen normalt stoppa flödet. Det minskar risken att en känd felaktig förändring når staging eller produktion.'},
-{g:6,d:'reason',q:'Efter deployment börjar svarstiderna i produktion öka kraftigt. Hur passar monitorering in i DevOps-loopen?',o:['Monitorering ger feedback som kan leda till felsökning, förbättring och en ny utvecklingsiteration','Monitorering används bara före deployment','Monitorering ersätter automatiserade tester','Problemet ignoreras tills nästa planerade release'],a:0,h:'Deployment är inte slutet på flödet.',e:'Monitorering visar hur systemet beter sig i verkligheten. Den informationen förs tillbaka till teamet och kan skapa nya åtgärder eller förbättringar.'},
-{g:7,d:'concept',q:'Varför är Python populärt inom DevOps?',o:['Det är relativt lättläst och har många bibliotek för automation och integration','Det kan bara användas för frontend','Det fungerar bara på Windows','Det saknar stöd för externa system'],a:0,h:'Tänk på läsbarhet och ekosystem.',e:'Python är lätt att läsa och har ett stort biblioteksekosystem, vilket gör det praktiskt för automation och integration mellan olika system.'},
-{g:7,d:'concept',q:'Vad betyder det att Python fungerar som ett ”glue language”?',o:['Att det kan koppla ihop olika verktyg, API:er, filer och system','Att det bara används för databaser','Att det ersätter nätverk','Att det bara används för AI'],a:0,h:'Tänk på ”lim” mellan olika komponenter.',e:'Python kan användas som ett lager som koordinerar flera andra system och verktyg, även om dessa är byggda med olika tekniker.'},
-{g:7,d:'concept',q:'Hur kan Python passa in i agil utveckling?',o:['Genom snabb utveckling av mindre funktioner och verktyg som kan förbättras iterativt','Genom att förhindra förändringar','Genom att ersätta sprintar','Genom att ta bort behovet av testning'],a:0,h:'Agilt arbete bygger på korta iterationer.',e:'Python gör det ofta snabbt att skapa mindre lösningar, prototyper, API:er eller automationsverktyg som sedan kan förbättras i nästa iteration.'},
-{g:7,d:'reason',q:'Ett system är skrivet i Java men teamet vill automatisera några återkommande driftuppgifter. Måste automationen också skrivas i Java?',o:['Nej, Python kan användas separat som automationsverktyg','Ja, alla delar måste använda samma språk','Ja, annars fungerar inte CI/CD','Nej, men bara om systemet saknar databas'],a:0,h:'Applikationsspråk och automationsspråk behöver inte vara samma.',e:'Python kan användas för automation runt ett system oavsett vilket språk själva applikationen är byggd i.'},
-{g:7,d:'reason',q:'Varför är lättläst kod särskilt värdefull i ett agilt team?',o:['Flera personer kan snabbare förstå, ändra och underhålla lösningen','Det gör att inga tester behövs','Det gör koden snabbare att köra automatiskt','Det betyder att en person alltid äger all kod'],a:0,h:'Agila team samarbetar och förändrar kod ofta.',e:'När kod är lätt att förstå blir det enklare för teammedlemmar att samarbeta, granska, felsöka och vidareutveckla lösningen i korta iterationer.'},
-{g:7,d:'reason',q:'Ett team behöver hämta information från flera API:er och samla resultatet i ett internt verktyg. Vilken Python-egenskap är mest relevant?',o:['Förmågan att fungera som ett integrations- och glue language','Att Python alltid kör snabbast av alla språk','Att Python bara fungerar med egna databaser','Att Python inte använder externa bibliotek'],a:0,h:'Frågan handlar om att koppla ihop olika tjänster.',e:'Pythons styrka för integration gör det användbart när ett flöde behöver kommunicera med flera olika API:er, filer eller tjänster.'},
-{g:8,d:'concept',q:'Vad innebär scriptprogrammering i DevOps?',o:['Att automatisera en specifik återkommande uppgift','Att ersätta hela applikationen med ett script','Att endast designa webbsidor','Att konfigurera allt manuellt'],a:0,h:'Fokusera på repetitiva uppgifter.',e:'Scriptprogrammering används ofta för mindre avgränsade uppgifter som annars skulle behöva upprepas manuellt.'},
-{g:8,d:'concept',q:'Vad innebär systemautomation?',o:['Att återkommande administration och konfiguration av system automatiseras','Att användare automatiskt skriver krav','Att varje server hanteras manuellt','Att testning tas bort'],a:0,h:'Tänk på operativsystem och servrar.',e:'Systemautomation handlar om att minska manuellt arbete vid exempelvis konfiguration, underhåll eller administration av servrar och system.'},
-{g:8,d:'concept',q:'Vad är huvudsyftet med automatiserad testning i ett DevOps-flöde?',o:['Att snabbt och reproducerbart kontrollera om förändringar uppfyller förväntade krav','Att garantera att systemet aldrig får buggar','Att ersätta monitorering','Att göra releaser långsammare'],a:0,h:'Testresultat används ofta som en kvalitetsgrind.',e:'Automatiserade tester ger snabb och konsekvent återkoppling och kan hindra felaktiga förändringar från att gå vidare i leveransflödet.'},
-{g:8,d:'reason',q:'En administratör installerar samma uppdatering manuellt på 50 servrar varje månad. Vilken förbättring ligger närmast DevOps-principerna?',o:['Automatisera den repeterbara processen och samla resultatet konsekvent','Fortsätta manuellt eftersom automation alltid är riskfylld','Installera uppdateringen på färre servrar','Ta bort monitorering för att spara tid'],a:0,h:'Tänk på repetitivt arbete i stor skala.',e:'När samma uppgift görs många gånger är automation ofta lämplig eftersom processen kan bli snabbare, mer konsekvent och enklare att följa upp.'},
-{g:8,d:'reason',q:'Ett automatiserat test misslyckas i pipelinen efter en ny förändring. Varför är detta värdefullt?',o:['Felet upptäcks innan förändringen går längre i leveransflödet','Det visar att automatiserade tester bör tas bort','Det betyder automatiskt att produktionssystemet är nere','Det innebär att alla tidigare tester var fel'],a:0,h:'Tidiga fel är ofta billigare att hantera än sena fel.',e:'Ett viktigt värde med automatiserad testning är att problem kan upptäckas tidigt innan de når senare miljöer eller användare.'},
-{g:8,d:'reason',q:'Ett Python-baserat webbsystem tar emot en förfrågan, hämtar data och skickar tillbaka ett svar till användaren. Vilket användningsområde beskriver detta?',o:['Webbserverscriptning/backendutveckling','Systemautomation','Frontenddesign','Infrastructure as Code'],a:0,h:'Fokusera på serverns behandling av en webbförfrågan.',e:'När Python används för att ta emot webbförfrågningar, bearbeta data och returnera svar används det som backend eller webbserverscriptning.'}
+  {
+    "g": 1,
+    "d": "reason",
+    "q": "Ett utvecklingsteam levererar ofta kod som fungerar i deras miljö, men Operations behöver göra flera justeringar innan den kan köras stabilt i produktion. Vilken förändring angriper grundproblemet bäst?",
+    "o": [
+      "Införa ett extra godkännandesteg där Operations granskar varje release innan deployment.",
+      "Standardisera miljöer och releasekrav tillsammans och automatisera större delar av leveransflödet.",
+      "Öka tiden mellan releaser så att Operations får mer tid att förbereda varje förändring.",
+      "Låta utvecklingsteamet skriva mer detaljerad dokumentation om varje release till Operations."
+    ],
+    "a": 1,
+    "h": "Flera alternativ kan minska risken kortsiktigt. Vilket minskar själva friktionen mellan miljöerna och teamen?",
+    "e": "Godkännanden, längre intervall och bättre dokumentation kan hjälpa, men de behåller samma överlämning. Gemensamma standarder och automation gör produktionskraven till en del av leveransflödet och minskar miljöskillnaderna."
+  },
+  {
+    "g": 1,
+    "d": "reason",
+    "q": "Test- och produktionsmiljöerna har börjat skilja sig åt, vilket gör att fel upptäcks först efter deployment. Vad är den mest direkt riktade förbättringen?",
+    "o": [
+      "Utöka integrationstesterna så att fler fel upptäcks innan release.",
+      "Införa en manuell checklista som jämför miljöerna före varje deployment.",
+      "Automatisera och standardisera hur miljöerna skapas och konfigureras.",
+      "Minska releasefrekvensen tills teamet har hunnit stabilisera processen."
+    ],
+    "a": 2,
+    "h": "Fråga dig vilket alternativ som tar bort orsaken till att miljöerna glider isär.",
+    "e": "Fler tester och checklistor kan upptäcka konsekvenserna av miljöskillnader, men standardiserad och automatiserad miljöhantering angriper själva orsaken: att miljöerna skapas och förändras på olika sätt."
+  },
+  {
+    "g": 1,
+    "d": "reason",
+    "q": "Efter att ett projekt gått live fungerar applikationen stabilt, men ingen underhåller längre CI/CD-pipelinen och den börjar gradvis gå sönder. Vilken organisatorisk slutsats är mest relevant?",
+    "o": [
+      "Pipelinen bör flyttas till Operations eftersom allt efter lansering är driftansvar.",
+      "Projektteamet bör behållas oförändrat så länge systemet finns i produktion.",
+      "Leveransflödet behöver fortsatt ägarskap i linjeorganisationen, även efter att projektfasen är slut.",
+      "Pipelinen kan ersättas med manuella releaser tills nästa större utvecklingsprojekt startar."
+    ],
+    "a": 2,
+    "h": "Fokusera på skillnaden mellan ett projekt som tar slut och ett system som fortsätter leva.",
+    "e": "DevOps-funktionen upphör inte vid lansering. Pipelines, miljöer, monitorering och automation behöver långsiktigt ägarskap i den löpande organisationen."
+  },
+  {
+    "g": 1,
+    "d": "reason",
+    "q": "En deployment rapporteras som lyckad, men kort därefter ökar svarstiderna och vissa användare får fel. Vad ger teamet bäst underlag för att förstå vad som händer i den körande miljön?",
+    "o": [
+      "En ny build av samma kod för att kontrollera att artefakten går att skapa igen.",
+      "Monitorering och loggar som visar systemets beteende efter deployment.",
+      "En extra kodgranskning av den senaste ändringen innan någon felsökning börjar.",
+      "En jämförelse av hur lång tid själva deployment-jobbet tog mot tidigare releaser."
+    ],
+    "a": 1,
+    "h": "Deployment har redan lyckats. Frågan gäller systemets faktiska beteende efteråt.",
+    "e": "Build- och deploymentdata säger inte nödvändigtvis hur tjänsten mår när den körs. Monitorering och loggar ger återkoppling om exempelvis fel och prestanda i produktion."
+  },
+  {
+    "g": 1,
+    "d": "concept",
+    "q": "Vilken beskrivning skiljer bäst DevOps från att bara ha ett separat driftteam?",
+    "o": [
+      "DevOps innebär att utvecklare tar över allt driftansvar så att Operations inte längre behövs.",
+      "DevOps fokuserar främst på vilka verktyg som används för deployment och monitorering.",
+      "DevOps kopplar samman utveckling och drift genom gemensamt ansvar, automation och återkoppling genom hela leveransflödet.",
+      "DevOps innebär att Operations får tidigare information om releaser men ansvarsfördelningen i övrigt förblir densamma."
+    ],
+    "a": 2,
+    "h": "DevOps handlar om mer än tidigare information eller ett specifikt verktyg.",
+    "e": "Kärnan är inte att ett team ersätter det andra. DevOps försöker skapa ett gemensamt flöde där ansvar, automation och feedback binder ihop utveckling och drift."
+  },
+  {
+    "g": 2,
+    "d": "reason",
+    "q": "En manuell releaseaktivitet görs två gånger per år och tar ungefär 20 minuter. Att automatisera den skulle ta flera veckor. Vilket resonemang är mest relevant?",
+    "o": [
+      "Automatisera ändå eftersom manuella steg i sig är ett tecken på en omogen DevOps-process.",
+      "Bedöm tidsbesparing, risk, kostnad och hur ofta processen används innan ni investerar i automationen.",
+      "Öka releasefrekvensen först så att automationen blir lättare att motivera.",
+      "Bygg automationen bara om samma teknik senare kan återanvändas i andra projekt."
+    ],
+    "a": 1,
+    "h": "Automation har inget egenvärde om investeringen är större än nyttan.",
+    "e": "DevOps ska stödja affärsvärde. En sällsynt, snabb och låg-risk manuell aktivitet kan vara mindre prioriterad än en ofta återkommande eller riskfylld process."
+  },
+  {
+    "g": 2,
+    "d": "reason",
+    "q": "En startup har en lång lista funktioner men vet ännu inte vilka kunderna faktiskt värderar. Vilket nästa steg minskar affärsrisken mest?",
+    "o": [
+      "Bygga en komplett första version så att kundfeedbacken baseras på hela produktidén.",
+      "Prioritera den tekniskt svåraste delen först för att eliminera arkitekturrisk.",
+      "Leverera en mindre användbar version och använda verklig feedback för nästa prioritering.",
+      "Färdigställa skalningslösningen innan de första kunderna släpps in."
+    ],
+    "a": 2,
+    "h": "Tänk på hur man testar ett antagande innan man investerar i hela lösningen.",
+    "e": "En MVP skapar möjlighet att testa om lösningen faktiskt ger värde. Det gör att teamet kan lära sig tidigt och ändra prioriteringar innan stora resurser investeras."
+  },
+  {
+    "g": 2,
+    "d": "reason",
+    "q": "Ett team har halverat tiden från kod till produktion, men antalet allvarliga incidenter efter release har ökat kraftigt. Vilken bedömning är mest rimlig?",
+    "o": [
+      "Förbättringen är ändå lyckad eftersom time-to-market är det viktigaste DevOps-måttet.",
+      "Teamet bör fortsätta öka releasefrekvensen eftersom mindre releaser automatiskt sänker incidentrisken.",
+      "Leveranshastigheten måste vägas mot kvalitet och stabilitet eftersom driftproblem också påverkar affärsvärdet.",
+      "Problemet bör främst lösas genom att lägga fler manuella godkännanden efter varje automatiserat test."
+    ],
+    "a": 2,
+    "h": "DevOps optimerar flera mål samtidigt, inte bara hastighet.",
+    "e": "Kortare ledtid är värdefullt först när systemet fortfarande kan levereras med tillräcklig kvalitet och stabilitet. Incidenter kan skapa kostnader, avbrott och missnöjda användare."
+  },
+  {
+    "g": 2,
+    "d": "concept",
+    "q": "Vilken tolkning av 'fail fast' passar bäst med materialets entreprenörskapsperspektiv?",
+    "o": [
+      "Att acceptera fler produktionsfel för att kunna leverera idéer snabbare.",
+      "Att snabbt avbryta en teknisk lösning så fort första försöket inte fungerar.",
+      "Att testa viktiga antaganden tidigt så att en dålig riktning upptäcks innan stora resurser investeras.",
+      "Att bygga enklare tekniska lösningar även när de inte uppfyller de viktigaste användarbehoven."
+    ],
+    "a": 2,
+    "h": "Begreppet handlar framför allt om hur snabbt man lär sig att ett antagande är fel.",
+    "e": "Fail fast betyder snabb återkoppling och tidigt lärande. Det innebär inte att kvalitet medvetet sänks eller att varje första motgång ska stoppa ett projekt."
+  },
+  {
+    "g": 2,
+    "d": "reason",
+    "q": "Två lösningar uppfyller dagens krav. Den ena är mer avancerad och skalbar men kräver ny kompetens och högre driftkostnad. Den andra är enklare och teamet kan redan den. Vad bör styra valet?",
+    "o": [
+      "Välj den mest skalbara eftersom framtida kapacitet alltid väger tyngre än dagens kostnad.",
+      "Välj den enklare eftersom ett team aldrig bör introducera teknik det inte redan kan.",
+      "Bedöm om den extra skalbarheten motiveras av verkliga behov och väg den mot kompetens, kostnad och underhåll.",
+      "Välj den lösning som ger kortast initial utvecklingstid, eftersom driftkostnad kan optimeras senare."
+    ],
+    "a": 2,
+    "h": "Det finns ingen stack som alltid är bäst; frågan är vilket behov som faktiskt finns.",
+    "e": "Teknikval är en avvägning. Extra skalbarhet kan vara rätt, men bara om nyttan motiverar mer komplexitet, högre kostnad och kompetensbehov."
+  },
+  {
+    "g": 3,
+    "d": "reason",
+    "q": "Ett formulär visas korrekt i webbläsaren, men när det skickas får användaren ett oväntat svar från API:t. Var är det mest rimligt att börja felsökningen?",
+    "o": [
+      "Frontend, eftersom felet blir synligt där och därför sannolikt skapades där.",
+      "Backend, eftersom API-svar alltid bestäms av servern.",
+      "Gränssnittet mellan frontend och backend: kontrollera både vad som skickas och vad som returneras.",
+      "Infrastrukturen, eftersom kommunikationen mellan frontend och backend går över nätverket."
+    ],
+    "a": 2,
+    "h": "Problemet uppstår i kontakten mellan två lager.",
+    "e": "Frontend kan skicka fel data eller tolka svaret fel, medan backend kan returnera fel status eller struktur. Därför bör man först undersöka kontraktet mellan lagren."
+  },
+  {
+    "g": 3,
+    "d": "reason",
+    "q": "Användarna kan genomföra alla funktioner i systemet, men många hittar inte rätt meny och missförstår flödet. Vilken kompetens är mest direkt relevant?",
+    "o": [
+      "QA, eftersom problemet bör fångas genom fler funktionella tester.",
+      "UX/UI, eftersom problemet gäller hur användaren förstår och interagerar med gränssnittet.",
+      "Produktägaren, eftersom problemet kan lösas genom att prioritera färre funktioner.",
+      "DevOps, eftersom användarproblemen uppstår i den driftsatta versionen."
+    ],
+    "a": 1,
+    "h": "Skilj på att systemet tekniskt fungerar och att det är lätt att använda.",
+    "e": "Systemet uppfyller funktionerna men användarupplevelsen är svag. UX/UI arbetar direkt med struktur, interaktion och begriplighet i gränssnittet."
+  },
+  {
+    "g": 3,
+    "d": "reason",
+    "q": "Ett team har fler önskade funktioner än de hinner bygga under nästa period. Vem har normalt starkast ansvar för att prioritera vad som ska utvecklas?",
+    "o": [
+      "Projektledaren, eftersom rollen samordnar tid och resurser.",
+      "Produktägaren, eftersom rollen prioriterar vad som ger värde och kopplar ihop intressenter med teamet.",
+      "QA/testaren, eftersom kvalitet avgör vilka funktioner som bör byggas först.",
+      "DevOps-ingenjören, eftersom leveranskapaciteten avgör hur mycket som ryms."
+    ],
+    "a": 1,
+    "h": "Flera roller påverkar planeringen, men en har normalt ansvar för produktprioriteringen.",
+    "e": "Projektledaren kan samordna projektet och andra roller bidrar med perspektiv, men produktägaren prioriterar normalt vad som ska utvecklas utifrån behov och värde."
+  },
+  {
+    "g": 3,
+    "d": "reason",
+    "q": "Alla funktionella tester passerar, men releaser misslyckas ofta eftersom miljöer och deploymentsteg är inkonsekventa. Vilken kompetens behöver teamet framför allt stärka?",
+    "o": [
+      "QA, för att lägga till fler funktionella testfall före release.",
+      "DevOps, för att standardisera miljöer och automatisera leveransflödet.",
+      "Backend, för att minska beroendet av infrastrukturen.",
+      "Produktägarskap, för att reducera antalet funktioner i varje release."
+    ],
+    "a": 1,
+    "h": "Funktionaliteten har redan testats. Problemet uppstår när systemet ska levereras.",
+    "e": "När testerna passerar men miljö- och deploymentprocessen är instabil ligger förbättringsbehovet nära DevOps: CI/CD, miljöstandardisering och automation."
+  },
+  {
+    "g": 3,
+    "d": "concept",
+    "q": "Varför är DevOps svårt att placera i endast ett lager i teknikstacken?",
+    "o": [
+      "För att DevOps främst är en organisationsroll och därför inte arbetar med tekniska lager.",
+      "För att DevOps kan beröra infrastruktur, CI/CD, deployment, monitorering och samspelet med applikationsutvecklingen.",
+      "För att DevOps ersätter behovet av specialister i frontend, backend och databas.",
+      "För att DevOps endast arbetar med de delar av stacken som körs efter deployment."
+    ],
+    "a": 1,
+    "h": "Tänk på hur många lager som påverkas av ett automatiserat leveransflöde.",
+    "e": "DevOps arbetar tvärs över flera delar av systemets livscykel. Rollen är ofta starkt kopplad till infrastruktur men också till build, test, deployment och monitorering."
+  },
+  {
+    "g": 4,
+    "d": "reason",
+    "q": "Ett team kan React och Node.js väl och ska snabbt bygga en ny webbapplikation. Vilket argument talar starkast för MERN?",
+    "o": [
+      "MongoDB gör att teamet slipper modellera data innan utvecklingen börjar.",
+      "Teamet kan använda mycket av sin befintliga JavaScript-kompetens genom flera lager i lösningen.",
+      "React och Node.js innebär att applikationen automatiskt blir enklare att skala än med andra stackar.",
+      "MERN minskar behovet av separat CI/CD eftersom alla centrala delar använder JavaScript."
+    ],
+    "a": 1,
+    "h": "Fokusera på varför stacken passar just teamets förutsättningar.",
+    "e": "Befintlig kompetens är ett viktigt teknikvalskriterium. MERN kan minska inlärningstid när teamet redan arbetar med React, Node.js och JavaScript."
+  },
+  {
+    "g": 4,
+    "d": "concept",
+    "q": "Vad är den viktigaste förändringen när en Linux-webbserverstack beskrivs som LNMP i stället för LAMP?",
+    "o": [
+      "MySQL/MariaDB ersätts av en dokumentdatabas.",
+      "Apache ersätts av Nginx som webbserver.",
+      "PHP/Perl/Python ersätts av Node.js som serverside-teknik.",
+      "Linux ersätts av en containerplattform."
+    ],
+    "a": 1,
+    "h": "Jämför den komponent i stacknamnet som ändras.",
+    "e": "I LNMP används Nginx i stället för Apache. Övriga delar kan fortfarande bestå av Linux, MySQL/MariaDB och en serverside-teknik."
+  },
+  {
+    "g": 4,
+    "d": "reason",
+    "q": "Ett Python-team ska bygga en relativt stor webbapplikation och vill ha mycket vanlig webbfunktionalitet och struktur färdig från början. Vad talar mest för Django framför Flask?",
+    "o": [
+      "Django erbjuder ett mer komplett ramverk med mer funktionalitet och struktur inbyggd.",
+      "Flask saknar stöd för att bygga API:er som används av en frontend.",
+      "Django kräver mindre förståelse för backend eftersom ramverket hanterar all affärslogik.",
+      "Flask lämpar sig främst för automation och bör inte användas för webbtjänster."
+    ],
+    "a": 0,
+    "h": "Skillnaden handlar om hur mycket ramverket ger teamet från början.",
+    "e": "Django är ett större och mer komplett ramverk, medan Flask är mer minimalistiskt. Det gör Django attraktivt när teamet vill ha mer struktur och färdig funktionalitet."
+  },
+  {
+    "g": 4,
+    "d": "reason",
+    "q": "Ett företag använder redan C#, SQL Server och Azure i flera system och har stor intern kompetens inom .NET. Vilket argument väger tyngst för .NET i ett nytt liknande system?",
+    "o": [
+      "Microsoft-teknik ger automatiskt bättre prestanda när den körs i Azure.",
+      "Befintlig kompetens och integrationer kan minska både leveranstid och operativ risk.",
+      ".NET gör att organisationen kan använda samma databas för alla framtida system.",
+      "C# minskar behovet av andra DevOps-verktyg eftersom mycket hanteras av plattformen."
+    ],
+    "a": 1,
+    "h": "Utgå från organisationens faktiska förutsättningar, inte från att en teknik är universellt bäst.",
+    "e": "En etablerad kompetens- och verktygsbas kan göra .NET till ett effektivt och mindre riskfyllt val. Det betyder inte att plattformen alltid är tekniskt överlägsen."
+  },
+  {
+    "g": 4,
+    "d": "reason",
+    "q": "Vilket är det starkaste argumentet mot att välja en teknikstack enbart för att den är populär?",
+    "o": [
+      "En populär stack förändras vanligtvis snabbare och blir därför svårare att underhålla.",
+      "Popularitet säger inte om stacken passar systemets krav, teamets kompetens eller den långsiktiga driften.",
+      "Populära stackar innebär oftare fler externa beroenden och därför högre säkerhetsrisk.",
+      "En organisation bör prioritera teknik som redan används internt även om den inte uppfyller nya krav."
+    ],
+    "a": 1,
+    "h": "Popularitet kan vara relevant, men den svarar inte på projektets viktigaste frågor.",
+    "e": "Teknikval måste kopplas till det specifika systemets behov, organisationens kunskap, säkerhet, skalning, utvecklingstakt och drift över tid."
+  },
+  {
+    "g": 5,
+    "d": "reason",
+    "q": "En startup med tre utvecklare bygger en första version av en relativt enkel tjänst. Vilket argument talar starkast för att börja monolitiskt?",
+    "o": [
+      "En monolit garanterar lägre driftkostnad även när systemet växer kraftigt.",
+      "En monolit minskar initial operativ komplexitet när behovet av oberoende tjänster ännu är begränsat.",
+      "En monolit gör att teamet senare kan byta till mikrotjänster utan arkitekturarbete.",
+      "En monolit är enklare eftersom hela applikationen alltid kan skalas mer effektivt än separata tjänster."
+    ],
+    "a": 1,
+    "h": "Tänk på vad ett litet team faktiskt behöver hantera i den första versionen.",
+    "e": "För ett mindre system kan en monolit vara enklare att utveckla, testa och deploya. Fördelen är framför allt lägre initial komplexitet, inte att monoliten alltid är bäst på sikt."
+  },
+  {
+    "g": 5,
+    "d": "reason",
+    "q": "I en stor e-handelsplattform har produktsökningen mycket högre belastning än resten av systemet. Vilken egenskap hos mikrotjänster är mest relevant?",
+    "o": [
+      "Söktjänsten kan skalas separat utan att samma extra kapacitet måste ges till hela applikationen.",
+      "Söktjänsten kan använda en egen releaseprocess och därför behöver övriga tjänster inte testas.",
+      "Söktjänsten kan byta teknik utan att några integrationer med andra tjänster påverkas.",
+      "Söktjänsten kan köras utan gemensam monitorering eftersom den är fristående."
+    ],
+    "a": 0,
+    "h": "Fokusera på skillnaden i belastning mellan en funktion och resten av systemet.",
+    "e": "Oberoende skalning är en viktig mikrotjänstfördel. Om bara sökningen behöver mer kapacitet kan den tjänsten skalas utan att hela systemet får samma resurser."
+  },
+  {
+    "g": 5,
+    "d": "reason",
+    "q": "Fyra team behöver göra förändringar och releaser oberoende av varandra i olika delar av ett stort system. Vilket argument talar tydligast för mikrotjänster?",
+    "o": [
+      "Varje team kan få en tydligare avgränsad tjänst som kan utvecklas och deployas mer självständigt.",
+      "Varje team kan välja helt egen teknik utan att behöva samordna gränssnitt mellan tjänster.",
+      "Varje team kan undvika gemensamma CI/CD-standarder eftersom tjänsterna deployas separat.",
+      "Varje team får automatiskt färre produktionsincidenter eftersom tjänsterna är mindre."
+    ],
+    "a": 0,
+    "h": "Oberoende betyder inte att all samordning försvinner.",
+    "e": "Mikrotjänster kan ge team större oberoende i utveckling och deployment. De behöver fortfarande samordna API:er, drift, monitorering och andra gemensamma principer."
+  },
+  {
+    "g": 5,
+    "d": "reason",
+    "q": "Ett företag delar upp en fungerande monolit i många mikrotjänster men behåller manuella builds, deployments och serverkonfigurationer. Vilket problem är mest sannolikt?",
+    "o": [
+      "Utvecklingsteamen får mindre frihet eftersom varje tjänst måste använda samma teknik.",
+      "Den operativa komplexiteten ökar snabbare än organisationens förmåga att hantera den.",
+      "Systemet blir svårare att skala eftersom mikrotjänster måste skalas tillsammans.",
+      "Testningen blir enklare men releaseprocessen blir långsammare."
+    ],
+    "a": 1,
+    "h": "Mikrotjänster ger fler separata saker att bygga, deploya och övervaka.",
+    "e": "Mikrotjänster ökar antalet deployments, miljöer, nätverkskopplingar och loggkällor. Utan stark automation och monitorering kan den extra flexibiliteten bli en stor operativ belastning."
+  },
+  {
+    "g": 5,
+    "d": "concept",
+    "q": "Vilken jämförelse mellan monolit och mikrotjänster är mest korrekt?",
+    "o": [
+      "Monolit är främst ett val för små system, medan mikrotjänster alltid är rätt när systemet ska användas i produktion.",
+      "Monolit kan ge enklare initial hantering, medan mikrotjänster kan ge mer oberoende och flexibel skalning men också högre operativ komplexitet.",
+      "Mikrotjänster ger bättre robusthet eftersom fel i en tjänst aldrig kan påverka andra tjänster.",
+      "Monolit och mikrotjänster skiljer sig främst i vilka programmeringsspråk som får användas."
+    ],
+    "a": 1,
+    "h": "Båda arkitekturerna har fördelar och nackdelar beroende på behov.",
+    "e": "Monoliter är ofta enklare initialt. Mikrotjänster kan ge oberoende utveckling och skalning men introducerar fler tjänster, nätverksberoenden, deployments och övervakningsbehov."
+  },
+  {
+    "g": 6,
+    "d": "reason",
+    "q": "Ett företag kräver att en compliance-ansvarig manuellt godkänner varje release innan den går till produktion. Vilken modell passar kravet bäst?",
+    "o": [
+      "Continuous Integration, där build och test automatiseras men releasepaketet inte behöver hållas redo.",
+      "Continuous Delivery, där förändringen automatiskt görs releaseklar men produktionssteget kan kräva godkännande.",
+      "Continuous Deployment, eftersom ett manuellt godkännande kan läggas efter att förändringen gått till produktion.",
+      "En helt manuell releaseprocess, eftersom ett manuellt beslut innebär att CD inte kan användas."
+    ],
+    "a": 1,
+    "h": "Det manuella beslutet behöver inte göra resten av leveransprocessen manuell.",
+    "e": "Continuous Delivery automatiserar vägen fram till en releaseklar version men kan behålla ett mänskligt beslut före produktion. Det passar därför ett krav på manuell approval."
+  },
+  {
+    "g": 6,
+    "d": "reason",
+    "q": "Tio utvecklare arbetar i flera veckor på separata grenar och slår ihop allt strax före release. Mergeproblem och integrationsfel blir stora. Vilken förändring adresserar orsaken bäst?",
+    "o": [
+      "Öka testningen efter att alla grenar slagits ihop.",
+      "Integrera mindre förändringar oftare och låta automatiserade builds och tester ge snabb feedback.",
+      "Införa ett längre kodfrysningsfönster före varje release.",
+      "Lägga till en separat stagingmiljö där den sammanslagna versionen kan testas längre."
+    ],
+    "a": 1,
+    "h": "Vilket alternativ gör själva integrationsproblemen mindre i stället för att bara upptäcka dem senare?",
+    "e": "Continuous Integration minskar storleken på varje integration och ger feedback tidigt. Mer testning efter en stor sammanslagning kan hitta problem men minskar inte orsaken till att de blir stora."
+  },
+  {
+    "g": 6,
+    "d": "reason",
+    "q": "En pipeline har passerat build och flera tester, men ett obligatoriskt integrationstest misslyckas. Vad är den mest rimliga standardreaktionen?",
+    "o": [
+      "Stoppa flödet och kräva att problemet hanteras innan förändringen går vidare.",
+      "Fortsätta till staging men blockera endast produktionssteget.",
+      "Köra om testet automatiskt tills det passerar för att utesluta tillfälliga fel.",
+      "Skapa artefakten som vanligt men låta Operations avgöra om felet är tillräckligt viktigt."
+    ],
+    "a": 0,
+    "h": "Pipelinen fungerar som en kvalitetsgrind när ett test är definierat som obligatoriskt.",
+    "e": "Om ett obligatoriskt test misslyckas bör förändringen normalt stoppas. Att fortsätta kan vara möjligt i vissa specialfall, men då har testet inte längre rollen som faktisk kvalitetsgrind."
+  },
+  {
+    "g": 6,
+    "d": "reason",
+    "q": "Efter en release visar monitoreringen att svarstiden ökat, trots att alla tester i pipelinen passerade. Vad illustrerar detta bäst?",
+    "o": [
+      "Att monitorering bör ersätta vissa automatiserade tester eftersom produktionsdata är mer realistisk.",
+      "Att CI/CD-flödet behöver återkoppling från produktion eftersom tester före deployment inte kan visa allt som händer i verklig drift.",
+      "Att problemet sannolikt ligger i buildsteget eftersom testerna annars hade hittat det.",
+      "Att Continuous Deployment är mindre lämpligt än Continuous Delivery när prestandaproblem förekommer."
+    ],
+    "a": 1,
+    "h": "Förhandskontroller och verklig drift svarar på olika frågor.",
+    "e": "Tester före deployment är viktiga men kan inte fånga alla produktionsförhållanden. Monitorering ger ny information som går tillbaka till nästa felsöknings- och utvecklingscykel."
+  },
+  {
+    "g": 6,
+    "d": "concept",
+    "q": "Vilken beskrivning skiljer korrekt mellan pipeline, jobb, trigger och artefakt?",
+    "o": [
+      "En pipeline är hela flödet, ett jobb är ett avgränsat steg, en trigger startar ett steg eller flöde och en artefakt är ett resultat som kan skickas vidare.",
+      "En pipeline är den färdiga builden, ett jobb är hela leveransflödet, en trigger är ett testresultat och en artefakt är en produktionsmiljö.",
+      "En pipeline är endast deploymentdelen, ett jobb är en utvecklarändring, en trigger är den färdiga builden och en artefakt är ett manuellt godkännande.",
+      "En pipeline och ett jobb betyder i praktiken samma sak, medan trigger och artefakt bara används vid Continuous Deployment."
+    ],
+    "a": 0,
+    "h": "Tänk kedja → steg → startvillkor → resultat.",
+    "e": "Pipelinen är helheten. Jobb är mindre steg i den. Triggers avgör när något startar, och artefakten är exempelvis resultatet från buildsteget som används senare i flödet."
+  },
+  {
+    "g": 7,
+    "d": "reason",
+    "q": "En Java-applikation behöver ett automatiserat flöde som hämtar data från ett API, bearbetar en konfigurationsfil och skickar ett resultat till en annan tjänst. Varför kan Python vara ett rimligt val?",
+    "o": [
+      "Python kan fungera som ett glue language mellan flera system även om själva applikationen är skriven i ett annat språk.",
+      "Python bör användas eftersom alla DevOps-flöden bör ha ett annat språk än applikationen.",
+      "Python gör att teamet kan undvika API-kontrakt mellan systemen.",
+      "Python kan ersätta behovet av de andra tjänsterna genom att köra deras logik lokalt."
+    ],
+    "a": 0,
+    "h": "Fokusera på integration, inte på vilket språk huvudapplikationen använder.",
+    "e": "Python kan användas runt en applikation för att koppla ihop API:er, filer och andra verktyg. DevOps-automation behöver inte använda samma språk som själva systemet."
+  },
+  {
+    "g": 7,
+    "d": "reason",
+    "q": "Ett agilt team vill snabbt prova ett internt verktyg, få feedback och förbättra det i flera små iterationer. Vilken Python-egenskap är mest relevant enligt materialet?",
+    "o": [
+      "Python är relativt lättläst och snabbt att arbeta med, vilket passar mindre lösningar som utvecklas stegvis.",
+      "Python ger automatiskt bättre prestanda än mer kompilerade språk vid varje iteration.",
+      "Python gör att teamet kan hoppa över designbeslut tills produkten är färdig.",
+      "Python passar agilt främst eftersom språket alltid används i CI/CD-verktyg."
+    ],
+    "a": 0,
+    "h": "Frågan gäller utvecklingstakt och iterativt arbete, inte rå prestanda.",
+    "e": "Materialet lyfter att Python är lättläst och snabbt att arbeta med, vilket passar prototyper, mindre funktioner, API:er och interna verktyg som förbättras stegvis."
+  },
+  {
+    "g": 7,
+    "d": "concept",
+    "q": "Vad menas främst med att Python kan fungera som ett 'glue language' i DevOps?",
+    "o": [
+      "Att Python kan koppla samman API:er, filer, databaser och andra verktyg i ett automatiserat flöde.",
+      "Att Python används för att skriva wrappers runt alla andra programmeringsspråk så att de får samma syntax.",
+      "Att Python bör vara det gemensamma applikationsspråket när flera team använder olika tekniker.",
+      "Att Python ersätter behovet av integrationsplattformar genom att all kommunikation sker i samma process."
+    ],
+    "a": 0,
+    "h": "Tänk 'lim' mellan redan existerande delar.",
+    "e": "Glue language betyder att Python kan koordinera och koppla ihop andra system och verktyg. Det kräver inte att resten av applikationen skrivs om i Python."
+  },
+  {
+    "g": 7,
+    "d": "reason",
+    "q": "En pipelinefil börjar innehålla mycket villkorslogik och flera steg som anropar externa tjänster. Vilket argument talar för att flytta delar av logiken till Python?",
+    "o": [
+      "Mer komplex logik kan bli tydligare och lättare att underhålla i ett riktigt script än i en växande pipelinekonfiguration.",
+      "Python gör att pipelinen inte längre behöver ha separata jobb eller triggers.",
+      "Python innebär att samma script automatiskt fungerar oberoende av alla externa API-förändringar.",
+      "Python gör att den komplexa logiken kan köras utan tester eftersom språket är lättläst."
+    ],
+    "a": 0,
+    "h": "Materialet säger att Python ofta används när uppgiften är mer avancerad än ett enkelt kommando.",
+    "e": "Python kan göra avancerad automationslogik mer strukturerad och återanvändbar. Pipelinen kan fortfarande styra när scriptet körs och hur resultatet påverkar nästa steg."
+  },
+  {
+    "g": 7,
+    "d": "reason",
+    "q": "Varför kan lättläst Python-kod vara särskilt värdefull i ett team som arbetar iterativt?",
+    "o": [
+      "Fler personer kan snabbare förstå, granska och förändra automationen när behoven ändras.",
+      "Lättläst kod behöver mindre testning eftersom fel blir synliga direkt vid läsning.",
+      "Det gör att samma person kan ansvara för både utveckling och drift utan överlämningar.",
+      "Det gör att teamet kan använda färre versioner av sina automationsverktyg."
+    ],
+    "a": 0,
+    "h": "Agilt arbete innebär att lösningar förändras ofta och av flera personer.",
+    "e": "När automation är lätt att läsa blir det enklare att samarbeta, granska och vidareutveckla den i korta iterationer. Läsbarhet ersätter däremot inte testning."
+  },
+  {
+    "g": 8,
+    "d": "reason",
+    "q": "En administratör loggar in på 50 servrar varje månad för att göra samma uppdatering. Vilken förändring ger störst nytta enligt systemautomationsprincipen?",
+    "o": [
+      "Automatisera den återkommande processen så att samma definierade åtgärd kan köras konsekvent på servrarna.",
+      "Skapa en detaljerad checklista så att den manuella processen genomförs på samma sätt varje gång.",
+      "Dela servrarna mellan flera administratörer så att uppdateringen blir klar snabbare.",
+      "Uppdatera ett mindre antal servrar åt gången för att minska konsekvensen av ett eventuellt fel."
+    ],
+    "a": 0,
+    "h": "Flera alternativ minskar risk eller tid, men vilket tar bort det repetitiva manuella arbetet?",
+    "e": "Checklista, parallellt arbete och stegvis utrullning kan vara värdefulla, men systemautomation adresserar själva repetitionen genom att samma process utförs konsekvent av automation."
+  },
+  {
+    "g": 8,
+    "d": "reason",
+    "q": "Efter varje deployment ska ett automatiserat steg kontrollera att en tjänst svarar korrekt. Om kontrollen misslyckas ska flödet markeras som felaktigt. Vilket användningsområde beskriver detta bäst?",
+    "o": [
+      "Systemautomation, eftersom kontrollen körs mot en server.",
+      "Automatiserad testning i ett DevOps-flöde, eftersom resultatet avgör om deploymenten anses lyckad.",
+      "Webbserverscriptning, eftersom kontrollen skickar en webbförfrågan.",
+      "Scriptprogrammering utan koppling till CI/CD, eftersom själva kontrollen är ett separat program."
+    ],
+    "a": 1,
+    "h": "Samma Python-script kan passa flera kategorier, men frågan gäller vilken funktion det har i flödet.",
+    "e": "Kontrollen är ett automatiserat test kopplat till deploymenten. Att den tekniskt använder en webbförfrågan gör den inte primärt till webbserverscriptning."
+  },
+  {
+    "g": 8,
+    "d": "reason",
+    "q": "Ett team vill kontrollera att hela flödet 'logga in → lägga produkt i kundvagn → genomföra köp' fungerar. Vilken testtyp ligger närmast?",
+    "o": [
+      "Ett API-test som testar varje backendendpoint separat.",
+      "Ett UI-/end-to-end-test som följer användarflödet genom flera delar av systemet.",
+      "Ett systemautomationsscript som kontrollerar serverkonfigurationen.",
+      "Ett post-deployment-test som endast verifierar att webbservern svarar."
+    ],
+    "a": 1,
+    "h": "Frågan gäller ett helt användarflöde, inte en enskild komponent.",
+    "e": "End-to-end-testning följer ett sammanhängande användarflöde genom flera systemdelar. API-tester kan vara viktiga men testar normalt mindre avgränsade gränssnitt."
+  },
+  {
+    "g": 8,
+    "d": "concept",
+    "q": "Vilket exempel beskriver bäst webbserverscriptning med Python?",
+    "o": [
+      "Ett script läser loggfiler och skickar en sammanfattning till ett övervakningssystem.",
+      "En Python-tjänst tar emot en webbförfrågan, hämtar data och skickar tillbaka ett svar.",
+      "Ett script uppdaterar konfigurationen på flera Linux-servrar.",
+      "Ett pipelinejobb kör Python för att kontrollera om en buildartefakt finns."
+    ],
+    "a": 1,
+    "h": "Fokusera på Python som del av själva backendtjänsten.",
+    "e": "Webbserverscriptning innebär att Python används för backend eller webbtjänster, exempelvis med Django eller Flask, där förfrågningar tas emot, behandlas och besvaras."
+  },
+  {
+    "g": 8,
+    "d": "reason",
+    "q": "Ett manuellt API-test körs inför varje release och ger ibland olika resultat beroende på vem som utför det. Vilken förbättring passar bäst med materialets syn på automatiserad testning?",
+    "o": [
+      "Automatisera samma kontroll så att den körs på ett reproducerbart sätt i leveransflödet.",
+      "Låta två personer göra testet oberoende och jämföra sina resultat.",
+      "Flytta testet till produktion så att det alltid körs mot den riktiga miljön.",
+      "Göra testet mer omfattande men behålla det manuellt för att kunna tolka fler situationer."
+    ],
+    "a": 0,
+    "h": "Materialet betonar både tidig feedback och reproducerbarhet.",
+    "e": "Automatisering gör att samma kontroll kan köras konsekvent och ge ett tydligt pass/fail-resultat i CI/CD-flödet. Manuella dubbelkontroller kan öka kvaliteten men behåller variationen."
+  }
 ];
-const $=id=>document.getElementById(id); const setup=$('setup'),quiz=$('quiz'),result=$('result'),goal=$('goal'),depth=$('depth'),count=$('count'),modeEl=$('mode'),start=$('start'),qText=$('question'),options=$('options'),meta=$('meta'),progressText=$('progressText'),progress=$('progress'),scoreText=$('scoreText'),hintBtn=$('hintBtn'),hint=$('hint'),feedback=$('feedback'),next=$('nextBtn'),finalScore=$('finalScore'),resultMsg=$('resultMsg'),breakdown=$('breakdown'),reviewWrap=$('reviewWrap'),review=$('review'),retry=$('retry'),restart=$('restart');
-let active=[],i=0,score=0,answered=[],locked=false,mode='learn';
-const statsKey='devopsQuizStatsV3';
+const $=id=>document.getElementById(id);
+const setup=$('setup'),quiz=$('quiz'),result=$('result'),goal=$('goal'),depth=$('depth'),count=$('count'),modeEl=$('mode');
+const question=$('question'),options=$('options'),meta=$('meta'),progressText=$('progressText'),bar=$('bar'),scoreEl=$('score'),hintBtn=$('hintBtn'),hint=$('hint'),feedback=$('feedback'),next=$('next');
+const finalScore=$('finalScore'),resultMsg=$('resultMsg'),breakdown=$('breakdown'),reviewWrap=$('reviewWrap'),review=$('review'),retry=$('retry');
+let active=[],index=0,score=0,answers=[],locked=false,mode='learn';
+const statsKey='devopsQuizHardV4';
 function loadStats(){try{return JSON.parse(localStorage.getItem(statsKey)||'{}')}catch{return {}}}
-function saveStats(data){try{localStorage.setItem(statsKey,JSON.stringify(data))}catch{}}
-function qKey(q){return `${q.g}|${q.d}|${q.q}`}
-function recordAnswer(q,correct){const s=loadStats(),k=qKey(q);s[k]??={seen:0,wrong:0};s[k].seen++;if(!correct)s[k].wrong++;saveStats(s)}
-function shuffle(arr){const x=[...arr];for(let n=x.length-1;n>0;n--){const j=Math.floor(Math.random()*(n+1));[x[n],x[j]]=[x[j],x[n]]}return x}
-function prepare(q){return {...q,opts:shuffle(q.o.map((label,idx)=>({label,correct:idx===q.a})))}}
-function basePool(){return qs.filter(x=>(goal.value==='all'||String(x.g)===goal.value)&&(depth.value==='all'||x.d===depth.value))}
-function repetitionPool(pool){
-  const s=loadStats();
-  const missed=pool.filter(q=>(s[qKey(q)]?.wrong||0)>0);
-  if(!missed.length)return shuffle(pool);
-  const ranked=[...missed].sort((a,b)=>{
-    const sa=s[qKey(a)]||{seen:0,wrong:0},sb=s[qKey(b)]||{seen:0,wrong:0};
-    return (sb.wrong/Math.max(sb.seen,1))-(sa.wrong/Math.max(sa.seen,1)) || sb.wrong-sa.wrong;
-  });
-  return [...ranked,...shuffle(pool.filter(q=>(s[qKey(q)]?.wrong||0)===0))];
-}
-function startQuiz(custom){
-  mode=modeEl.value;
-  let pool=custom||basePool();
-  if(!custom&&mode==='repeat')pool=repetitionPool(pool);
-  const n=count.value==='all'?pool.length:Math.min(Number(count.value),pool.length);
-  active=(mode==='repeat'&&!custom?pool.slice(0,n):shuffle(pool).slice(0,n)).map(prepare);
-  i=0;score=0;answered=[];locked=false;
-  setup.classList.add('hidden');result.classList.add('hidden');quiz.classList.remove('hidden');render()
-}
-function render(){
-  locked=false;const q=active[i];qText.textContent=q.q;
-  meta.textContent=`Kursmål ${q.g} · ${q.d==='concept'?'Begrepp':'Resonemang & tillämpning'}`;
-  progressText.textContent=`Fråga ${i+1} av ${active.length}`;
-  progress.style.width=`${((i+1)/active.length)*100}%`;
-  scoreText.textContent=mode==='exam'?'Provläge':mode==='repeat'?`Repetition · Rätt: ${score}`:`Rätt: ${score}`;
-  options.innerHTML='';hint.classList.add('hidden');feedback.classList.add('hidden');next.classList.add('hidden');hintBtn.classList.remove('hidden');hintBtn.textContent='Visa ledtråd';
-  q.opts.forEach((o,idx)=>{const b=document.createElement('button');b.className='opt';b.textContent=o.label;b.addEventListener('click',()=>choose(idx,b));options.appendChild(b)})
-}
-function choose(idx){
-  if(locked)return;locked=true;const q=active[i],picked=q.opts[idx];
-  if(picked.correct)score++;
-  recordAnswer(q,picked.correct);
-  answered.push({q,picked:picked.label,correct:picked.correct});
-  [...options.children].forEach((b,k)=>{b.disabled=true;if(mode!=='exam'){if(q.opts[k].correct)b.classList.add('correct');if(k===idx&&!q.opts[k].correct)b.classList.add('wrong')}});
-  hintBtn.classList.add('hidden');
-  if(mode!=='exam'){feedback.classList.remove('hidden');feedback.innerHTML=`<strong>${picked.correct?'Rätt!':'Inte riktigt.'}</strong><br>${q.e}`;scoreText.textContent=mode==='repeat'?`Repetition · Rätt: ${score}`:`Rätt: ${score}`}
-  next.classList.remove('hidden');next.textContent=i===active.length-1?'Visa resultat':'Nästa fråga'
-}
-function showResult(){
-  quiz.classList.add('hidden');result.classList.remove('hidden');const pct=Math.round(score/active.length*100);
-  finalScore.textContent=`${score} / ${active.length} (${pct}%)`;
-  resultMsg.textContent=pct>=85?'Mycket bra. Du visar både bra begreppskoll och förmåga att resonera kring situationer.':pct>=65?'Bra grund. Titta särskilt på resonemangsfrågorna du missade och försök förklara varför rätt alternativ passar bäst.':'Fortsätt träna. Använd förklaringarna för att förstå sambanden, inte bara memorera rätt alternativ.';
-  const stats={};answered.forEach(x=>{stats[x.q.g]??={r:0,t:0};stats[x.q.g].t++;if(x.correct)stats[x.q.g].r++});
-  breakdown.innerHTML='';Object.keys(stats).sort((a,b)=>a-b).forEach(g=>{const s=stats[g],el=document.createElement('div');el.className='review-item';el.innerHTML=`<strong>Kursmål ${g}</strong><div class="small">${s.r} av ${s.t} rätt</div>`;breakdown.appendChild(el)});
-  const wrong=answered.filter(x=>!x.correct);review.innerHTML='';reviewWrap.classList.toggle('hidden',!wrong.length);retry.classList.toggle('hidden',!wrong.length);
-  wrong.forEach(x=>{const correct=x.q.opts.find(o=>o.correct).label,el=document.createElement('div');el.className='review-item';el.innerHTML=`<div class="tag">Kursmål ${x.q.g} · ${x.q.d==='concept'?'Begrepp':'Resonemang & tillämpning'}</div><h4>${x.q.q}</h4><p><strong>Ditt svar:</strong> ${x.picked}</p><p><strong>Rätt svar:</strong> ${correct}</p><p>${x.q.e}</p>`;review.appendChild(el)})
-}
-start.addEventListener('click',()=>startQuiz());hintBtn.addEventListener('click',()=>{hint.textContent=active[i].h;hint.classList.toggle('hidden');hintBtn.textContent=hint.classList.contains('hidden')?'Visa ledtråd':'Dölj ledtråd'});next.addEventListener('click',()=>{if(!locked)return;if(i<active.length-1){i++;render()}else showResult()});restart.addEventListener('click',()=>{result.classList.add('hidden');quiz.classList.add('hidden');setup.classList.remove('hidden')});retry.addEventListener('click',()=>{const wrong=answered.filter(x=>!x.correct).map(x=>({g:x.q.g,d:x.q.d,q:x.q.q,o:x.q.o,a:x.q.a,h:x.q.h,e:x.q.e}));if(wrong.length)startQuiz(wrong)});
+function saveStats(s){try{localStorage.setItem(statsKey,JSON.stringify(s))}catch{}}
+function key(q){return q.g+'|'+q.d+'|'+q.q}
+function record(q,correct){const s=loadStats(),k=key(q);s[k]??={seen:0,wrong:0};s[k].seen++;if(!correct)s[k].wrong++;saveStats(s)}
+function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function prep(q){return {...q,opts:shuffle(q.o.map((label,i)=>({label,correct:i===q.a})))}}
+function pool(){return qs.filter(q=>(goal.value==='all'||String(q.g)===goal.value)&&(depth.value==='all'||q.d===depth.value))}
+function repeatPool(p){const s=loadStats();const missed=p.filter(q=>(s[key(q)]?.wrong||0)>0);if(!missed.length)return shuffle(p);missed.sort((a,b)=>{const A=s[key(a)],B=s[key(b)];return B.wrong/Math.max(1,B.seen)-A.wrong/Math.max(1,A.seen)||B.wrong-A.wrong});return [...missed,...shuffle(p.filter(q=>(s[key(q)]?.wrong||0)===0))]}
+function begin(custom){mode=modeEl.value;let p=custom||pool();if(!custom&&mode==='repeat')p=repeatPool(p);const n=count.value==='all'?p.length:Math.min(Number(count.value),p.length);active=(mode==='repeat'&&!custom?p.slice(0,n):shuffle(p).slice(0,n)).map(prep);index=0;score=0;answers=[];setup.classList.add('hidden');result.classList.add('hidden');quiz.classList.remove('hidden');render()}
+function render(){locked=false;const q=active[index];question.textContent=q.q;meta.textContent=`Kursmål ${q.g} · ${q.d==='concept'?'Begrepp':'Resonemang & tillämpning'}`;progressText.textContent=`Fråga ${index+1} av ${active.length}`;bar.style.width=`${(index+1)/active.length*100}%`;scoreEl.textContent=mode==='exam'?'Provläge':mode==='repeat'?`Repetition · Rätt: ${score}`:`Rätt: ${score}`;options.innerHTML='';hint.classList.add('hidden');feedback.classList.add('hidden');next.classList.add('hidden');hintBtn.classList.remove('hidden');hintBtn.textContent='Visa ledtråd';q.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';b.textContent=o.label;b.addEventListener('click',()=>choose(i,b));options.appendChild(b)})}
+function choose(i,b){if(locked)return;locked=true;const q=active[index],picked=q.opts[i];if(picked.correct)score++;record(q,picked.correct);answers.push({q,picked:picked.label,correct:picked.correct});[...options.children].forEach((el,k)=>{el.disabled=true;if(mode!=='exam'){if(q.opts[k].correct)el.classList.add('correct');if(k===i&&!q.opts[k].correct)el.classList.add('wrong')}});hintBtn.classList.add('hidden');if(mode!=='exam'){feedback.classList.remove('hidden');feedback.innerHTML=`<strong>${picked.correct?'Rätt!':'Inte riktigt.'}</strong><br>${q.e}`;scoreEl.textContent=mode==='repeat'?`Repetition · Rätt: ${score}`:`Rätt: ${score}`}next.classList.remove('hidden');next.textContent=index===active.length-1?'Visa resultat':'Nästa fråga'}
+function finish(){quiz.classList.add('hidden');result.classList.remove('hidden');const pct=Math.round(score/active.length*100);finalScore.textContent=`${score} / ${active.length} (${pct}%)`;resultMsg.textContent=pct>=85?'Starkt resultat. Du verkar kunna skilja mellan flera rimliga alternativ och välja det som bäst passar situationen.':pct>=65?'Bra grund. Gå igenom frågorna du missade och fokusera på varför ett alternativ var bättre än de andra.':'Repetera sambanden i kursmaterialet. Målet är att kunna motivera varför ett alternativ passar bäst, inte bara känna igen rätt ord.';const s={};answers.forEach(a=>{s[a.q.g]??={r:0,t:0};s[a.q.g].t++;if(a.correct)s[a.q.g].r++});breakdown.innerHTML='';Object.keys(s).sort((a,b)=>a-b).forEach(g=>{const el=document.createElement('div');el.className='item';el.innerHTML=`<strong>Kursmål ${g}</strong><div class="small">${s[g].r} av ${s[g].t} rätt</div>`;breakdown.appendChild(el)});const wrong=answers.filter(a=>!a.correct);review.innerHTML='';reviewWrap.classList.toggle('hidden',!wrong.length);retry.classList.toggle('hidden',!wrong.length);wrong.forEach(a=>{const correct=a.q.opts.find(o=>o.correct).label,el=document.createElement('div');el.className='item';el.innerHTML=`<div class="eyebrow">Kursmål ${a.q.g}</div><strong>${a.q.q}</strong><p><b>Ditt svar:</b> ${a.picked}</p><p><b>Bästa svar:</b> ${correct}</p><p class="sub">${a.q.e}</p>`;review.appendChild(el)})}
+$('start').addEventListener('click',()=>begin());hintBtn.addEventListener('click',()=>{hint.textContent=active[index].h;hint.classList.toggle('hidden');hintBtn.textContent=hint.classList.contains('hidden')?'Visa ledtråd':'Dölj ledtråd'});next.addEventListener('click',()=>{if(!locked)return;if(index<active.length-1){index++;render()}else finish()});$('restart').addEventListener('click',()=>{result.classList.add('hidden');quiz.classList.add('hidden');setup.classList.remove('hidden')});retry.addEventListener('click',()=>{const w=answers.filter(a=>!a.correct).map(a=>a.q);if(w.length)begin(w)})
 </script>
 </body>
 </html>

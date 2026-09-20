@@ -1,11 +1,11 @@
 # DevOps i techbranschen – Quiz
 
-Öppna `index.html` i en webbläsare.
+Öppna `index.html` direkt i en webbläsare eller lägg filerna i ett GitHub-repo och deploya som en statisk site.
 
-Quizlägen:
-- Lärläge – visar förklaring direkt.
-- Provläge – visar facit först efter quizet.
-- Repetitionsläge – prioriterar frågor som tidigare besvarats fel.
-
-Frågorna täcker Kursmål 1–8 och blandar begrepp med resonemang och tillämpning.
-Repetitionsstatistik sparas lokalt i webbläsaren.
+Den här versionen:
+- 40 frågor baserade på Kursmål 1–8
+- trovärdiga distraktorer i samma problemområde
+- Lärläge, Provläge och Repetitionsläge
+- Begrepp samt Resonemang & tillämpning
+- lokal statistik i webbläsaren för repetitionsläget
+- inga kodfrågor
